@@ -1,0 +1,17 @@
+.contenedor-login {
+    color: white;
+}
+
+.bg-dark-x {
+    background-color: var(--dark-x);
+}
+
+.form-control, .btn {
+    min-height: 3.125rem;
+    line-height: initial;
+}
+
+.contenedor-image div {
+    display: flex;
+    justify-content: center;
+}

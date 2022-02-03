@@ -12,7 +12,7 @@ import { ImagesComponent } from './images/images.component';
     TituloComponent,
     LoginComponent,
     MainPageComponent,
-    ImagesComponent
+    ImagesComponent,
   ],
   exports: [
     MainPageComponent

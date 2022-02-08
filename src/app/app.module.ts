@@ -6,17 +6,19 @@ import { LoginModule } from './login/login.module';
 
 //socia login
 import { SocialLoginModule, SocialAuthServiceConfig } from 'angularx-social-login';
-import {
-  GoogleLoginProvider,
-} from 'angularx-social-login';
+import { GoogleLoginProvider } from 'angularx-social-login';
+import { AppRoutingModule } from './app-routing.module';
+import { ErrorPageComponent } from './shared/error-page/error-page.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    ErrorPageComponent
   ],
   imports: [
     LoginModule,
     BrowserModule,
+    AppRoutingModule,
     SocialLoginModule
   ],
   providers: [

@@ -19,7 +19,6 @@ import { FormsModule,ReactiveFormsModule } from '@angular/forms';
     ModalCrearMateriaComponent
   ],
   imports: [
-    LoginModule,
     BrowserModule,
     AppRoutingModule,
     SocialLoginModule,

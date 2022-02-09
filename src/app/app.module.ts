@@ -9,17 +9,18 @@ import { SocialLoginModule, SocialAuthServiceConfig } from 'angularx-social-logi
 import { GoogleLoginProvider } from 'angularx-social-login';
 import { AppRoutingModule } from './app-routing.module';
 import { ErrorPageComponent } from './shared/error-page/error-page.component';
-import { FormsModule,ReactiveFormsModule } from '@angular/forms';
+
 
 @NgModule({
   declarations: [
     AppComponent,
-    ErrorPageComponent,
+    ErrorPageComponent
   ],
   imports: [
+    LoginModule,
     BrowserModule,
     AppRoutingModule,
-    SocialLoginModule,
+    SocialLoginModule
   ],
   providers: [
     {

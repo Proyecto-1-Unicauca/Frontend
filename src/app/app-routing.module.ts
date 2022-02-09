@@ -1,7 +1,9 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { ErrorPageComponent } from './shared/error-page/error-page.component';
+import { ModalCrearMateriaComponent } from './sitio-principal/cursos/modal-crear-materia/modal-crear-materia.component';
 
 
 const routes: Routes = [
@@ -12,6 +14,10 @@ const routes: Routes = [
   {
     path: 'login',
     loadChildren: () => import('./login/login.module').then(m => m.LoginModule)
+  },
+  {
+    path: 'modal',
+    component: ModalCrearMateriaComponent
   },
   {
     path: '404',
@@ -25,7 +31,8 @@ const routes: Routes = [
 
 @NgModule({
   imports: [
-    RouterModule.forRoot(routes)
+    RouterModule.forRoot(routes),
+    FormsModule,
   ],
   exports: [
     RouterModule

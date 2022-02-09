@@ -1,24 +1,24 @@
-import { Component, OnInit,ViewEncapsulation } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { NgbModal} from '@ng-bootstrap/ng-bootstrap';
 import { FormGroup,FormBuilder,FormControl,Validators} from '@angular/forms';
 
 @Component({
-  selector: 'app-cursos',
-  templateUrl: './cursos.component.html',
-  encapsulation:ViewEncapsulation.None,
-  styleUrls: ['./cursos.component.css']
+  selector: 'app-modal-crear-materia',
+  templateUrl: './modal-crear-materia.component.html',
+  styleUrls: ['./modal-crear-materia.component.css']
 })
-export class CursosComponent implements OnInit {
+export class ModalCrearMateriaComponent implements OnInit {
 
   form!: FormGroup;
+  textField: any;
 
-  constructor(public modal:NgbModal,private formbuilder:FormBuilder) { 
+  constructor(private formbuilder:FormBuilder,public modal:NgbModal) {
     this.buildForm(); 
   }
 
   ngOnInit(): void {
   }
-    
+
   private buildForm() {
     this.form = this.formbuilder.group({
       name: [ '', [Validators.required]],
@@ -28,9 +28,11 @@ export class CursosComponent implements OnInit {
     });
 
   }
+
   openSM( contenido: any ){
-    this.modal.open(contenido,{windowClass:'oscuro'});
+    this.modal.open(contenido,{size:'ss'});
   }
+
   //Metodo para guarda la informacion del formulario
   save(event: Event) {
     event.preventDefault();

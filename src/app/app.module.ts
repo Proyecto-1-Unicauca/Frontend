@@ -9,17 +9,20 @@ import { SocialLoginModule, SocialAuthServiceConfig } from 'angularx-social-logi
 import { GoogleLoginProvider } from 'angularx-social-login';
 import { AppRoutingModule } from './app-routing.module';
 import { ErrorPageComponent } from './shared/error-page/error-page.component';
+import { ModalCrearMateriaComponent } from './sitio-principal/cursos/modal-crear-materia/modal-crear-materia.component';
+import { FormsModule,ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
     AppComponent,
-    ErrorPageComponent
+    ErrorPageComponent,
+    ModalCrearMateriaComponent
   ],
   imports: [
     LoginModule,
     BrowserModule,
     AppRoutingModule,
-    SocialLoginModule
+    SocialLoginModule,
   ],
   providers: [
     {

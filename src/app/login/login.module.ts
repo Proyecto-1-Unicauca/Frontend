@@ -5,6 +5,7 @@ import { LoginComponent } from './login/login.component';
 import { MainPageComponent } from './main-page/main-page.component';
 import { ImagesComponent } from './images/images.component';
 import { LoginRoutingModule } from './login-routing.module';
+import { HttpClientModule } from '@angular/common/http';
 
 
 
@@ -15,12 +16,10 @@ import { LoginRoutingModule } from './login-routing.module';
     MainPageComponent,
     ImagesComponent,
   ],
-  exports: [
-    MainPageComponent
-  ],
   imports: [
     CommonModule,
-    LoginRoutingModule
+    LoginRoutingModule,
+    HttpClientModule
   ]
 })
 export class LoginModule { }

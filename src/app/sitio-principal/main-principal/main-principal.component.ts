@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { LaboratoriosService } from '../../services/laboratorios.service';
 
 @Component({
   selector: 'app-main-principal',
@@ -7,9 +8,26 @@ import { Component, OnInit } from '@angular/core';
 })
 export class MainPrincipalComponent implements OnInit {
 
-  constructor() { }
+  subjectsss: any = [];
+
+  constructor(private labServicios: LaboratoriosService) { }
 
   ngOnInit(): void {
+      this.labServicios.getSubjects()
+      .subscribe( resp => {
+        console.log(resp);
+        this.subjectsss = resp;
+         
+
+      });
   }
+
+  imprimirSubject() {
+    console.log(this.subjectsss.subjects);
+    
+  }
+ 
+
+ 
 
 }

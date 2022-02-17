@@ -1,18 +1,18 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { MainPageComponent } from './main-page/main-page.component';
+import { LoginComponent } from './pages/login/login.component';
 
 const routes: Routes = [
   {
-    path: 'login',
+    path: '',
     children: [
       {
-        path: 'sesion', 
-        component: MainPageComponent
+        path: 'login',
+        component: LoginComponent
       },
       {
         path: '**',
-        redirectTo: 'sesion'
+        redirectTo: 'login'
       }
     ]
   }
@@ -20,10 +20,10 @@ const routes: Routes = [
 
 @NgModule({
   imports: [
-    RouterModule.forChild( routes )
+    RouterModule.forChild(routes)
   ],
   exports: [
     RouterModule
   ]
 })
-export class LoginRoutingModule { }
+export class AuthRoutingModule { }

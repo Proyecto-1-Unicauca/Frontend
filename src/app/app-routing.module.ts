@@ -3,16 +3,15 @@ import { RouterModule, Routes } from '@angular/router';
 
 import { ErrorPageComponent } from './shared/error-page/error-page.component';
 
-
 const routes: Routes = [
   {
-    path: 'sitio-principal',
-    loadChildren: () => import('./sitio-principal/sitio-principal.module').then(m => m.SitioPrincipalModule)
+    path: 'auth',
+    loadChildren: () => import('./auth/auth.module').then(m => m.AuthModule)
   },
   {
-    path: 'login',
-    loadChildren: () => import('./login/login.module').then(m => m.LoginModule)
-  },
+    path: 'platform',
+    loadChildren: () => import('./plataforma/plataforma.module').then(m => m.PlataformaModule)
+  }, 
   {
     path: '404',
     component: ErrorPageComponent

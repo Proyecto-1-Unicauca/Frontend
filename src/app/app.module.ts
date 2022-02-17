@@ -3,14 +3,13 @@ import { BrowserModule } from '@angular/platform-browser';
 import { HttpClientModule } from '@angular/common/http';
 
 import { AppComponent } from './app.component';
-import { LoginModule } from './login/login.module';
 
 //socia login
 import { SocialLoginModule, SocialAuthServiceConfig } from 'angularx-social-login';
 import { GoogleLoginProvider } from 'angularx-social-login';
 import { AppRoutingModule } from './app-routing.module';
 import { ErrorPageComponent } from './shared/error-page/error-page.component';
-
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [
@@ -18,11 +17,11 @@ import { ErrorPageComponent } from './shared/error-page/error-page.component';
     ErrorPageComponent
   ],
   imports: [
-    LoginModule,
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-    SocialLoginModule
+    SocialLoginModule,
+    BrowserAnimationsModule
   ],
   providers: [
     {

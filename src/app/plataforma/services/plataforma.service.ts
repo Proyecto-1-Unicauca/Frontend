@@ -16,7 +16,7 @@ export class PlataformaService {
 
     return this.http.get('http://127.0.0.1:8000/subjects', {headers: httpHeader});
   }
-
+  
   postcourses(courses: any){
     const httpHeader = new HttpHeaders({
       'Content-Type': 'application/jason'

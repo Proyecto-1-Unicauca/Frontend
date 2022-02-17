@@ -1,6 +1,10 @@
 import { Component, OnInit,ViewEncapsulation } from '@angular/core';
 import { NgbModal} from '@ng-bootstrap/ng-bootstrap';
 import { FormGroup,FormBuilder,FormControl,Validators} from '@angular/forms';
+import { HttpClient, HttpParams } from '@angular/common/http';
+import { Injectable } from '@angular/core';
+import { LaboratoriosService } from 'src/app/services/laboratorios.service';
+
 
 @Component({
   selector: 'app-cursos',
@@ -8,25 +12,38 @@ import { FormGroup,FormBuilder,FormControl,Validators} from '@angular/forms';
   encapsulation:ViewEncapsulation.None,
   styleUrls: ['./cursos.component.css']
 })
+@Injectable({
+  providedIn: 'root',
+})
 export class CursosComponent implements OnInit {
 
   form!: FormGroup;
-
-  constructor(public modal:NgbModal,private formbuilder:FormBuilder) { 
+  subjectsss: any = [];
+  valu2:any=[];
+  
+  constructor(
+      public modal:NgbModal,
+      private formbuilder:FormBuilder,
+      private labServicios: LaboratoriosService
+    ) { 
     this.buildForm(); 
-  }
+  } 
 
   ngOnInit(): void {
-  }
+    this.labServicios.getSubjects()
+    .subscribe( resp => {
+      this.subjectsss = resp;
+
+    });
+}
     
   private buildForm() {
     this.form = this.formbuilder.group({
       name: [ '', [Validators.required]],
-      date: [ '', [Validators.required]],
-      dateend: [ '', [Validators.required]],
-      category: [ '', [Validators.required]],
+      start: [ '', [Validators.required]],
+      end: [ '', [Validators.required]],
+      subject_id: [ '', [Validators.required]],
     });
-
   }
   openSM( contenido: any ){
     this.modal.open(contenido,{windowClass:'oscuro'});
@@ -36,9 +53,12 @@ export class CursosComponent implements OnInit {
     event.preventDefault();
     if(this.form.valid){
       const value = this.form.value;
-      console.log(value);
+      this.labServicios.postcourses(value).subscribe(data=>{this.valu2=data});
+      console.log(this.valu2);
+      this.modal.dismissAll();
+      this.form.reset();
     }else {
       this.form.markAllAsTouched();
     }
-  } 
+  }  
 }

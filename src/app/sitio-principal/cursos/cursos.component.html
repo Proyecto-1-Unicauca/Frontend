@@ -6,7 +6,7 @@
         </button>
     </div>
     <div class="modal-body">
-        <form [formGroup]="form" (ngSubmit)="save($event)">
+        <form [formGroup]="form" (ngSubmit)="save($event)"  >
             <h6>
               Nombre : 
               <input matInput  type="text" formControlName="name" FormControl="name">
@@ -16,39 +16,39 @@
             </div>
             <h6>
               Fecha de Inicio:
-              <input type="date" formControlName="date">
+              <input type="date" formControlName="start">
             </h6>
-            <div class="error" *ngIf="form.get('date')?.errors && form.get('date')?.touched">
+            <div class="error" *ngIf="form.get('start')?.errors && form.get('start')?.touched">
               Fecha requerida
             </div>
             <h6>
                 Fecha final:
-              <input type="date" formControlName="dateend">
+              <input type="date" formControlName="end">
             </h6>
-            <div class="error" *ngIf="form.get('dateend')?.errors && form.get('dateend')?.touched">
+            <div class="error" *ngIf="form.get('end')?.errors && form.get('end')?.touched">
               Fecha requerida
             </div>
             <h6>
               Tematica:
-              <select formControlName="category">
-                <option value="1">Mecanica</option>
-                <option value="2">Electromagnetismo</option>
-                <option value="3">Ondas</option>
+              <select formControlName="subject_id">
+                <option value=1>{{subjectsss.subjects[0].subjectName}}</option>
+                <option value="2">{{subjectsss.subjects[1].subjectName}}</option>
+                <option value="3">{{subjectsss.subjects[2].subjectName}}</option>
               </select>
             </h6>
-            <div class="error" *ngIf="form.get('category')?.errors && form.get('category')?.touched">
+            <div class="error" *ngIf="form.get('subject_id')?.errors && form.get('subject_id')?.touched">
               Materia requerida
             </div>
-            <button type="submit" class="btn btn-success"  >Guardar</button> 
+            <button type="submit" class="btn btn-success" >Guardar</button> 
           </form>
     </div>
     <div class="modal-footer"> 
         <button type="button" class="btn btn-danger"(click)="modal.close()">Cancelar</button>
     </div>
 </ng-template>
-
-<button type="button" class="nav-link active" (click)="openSM(contenido)">Crear Materia</button>
-
+<section>
+    <button type="button" class="nav-link active" style="float: right;" (click)="openSM(contenido)">Crear Materia</button>
+</section>
 
 <section class="mt-4">
     <div class="container">

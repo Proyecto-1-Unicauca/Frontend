@@ -17,4 +17,10 @@ export class LaboratoriosService {
 
     return this.http.get('http://127.0.0.1:8000/subjects', {headers: httpHeader});
   }
+  postcourses(courses: any){
+    const httpHeader = new HttpHeaders({
+      'Content-Type': 'application/jason'
+    })
+    return this.http.post('http://127.0.0.1:8000/courses',courses,{headers: httpHeader});
+  }
 }

@@ -17,17 +17,6 @@ export class MainPrincipalComponent implements OnInit {
       .subscribe( resp => {
         console.log(resp);
         this.subjectsss = resp;
-         
-
       });
   }
-
-  imprimirSubject() {
-    console.log(this.subjectsss.subjects);
-    
-  }
- 
-
- 
-
 }

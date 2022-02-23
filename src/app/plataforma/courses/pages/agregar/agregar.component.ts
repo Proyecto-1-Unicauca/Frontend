@@ -49,12 +49,13 @@ export class AgregarComponent implements OnInit {
     this.labServicios.postcourses(value).subscribe(data => { this.valu2 = data });
     console.log(this.form);
   }
-  
+
   MENSAJE(){
     console.log("Josman");
   }
 
 }
+
 
 
 

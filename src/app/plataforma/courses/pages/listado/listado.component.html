@@ -22,8 +22,8 @@
             <mat-divider></mat-divider>
             <br>
             <mat-card-content>
-                <p>Fecha de inicio: {{curso.start}}</p>
-                <p>Fecha de finalización: {{curso.end}}</p>
+                <p>Fecha de inicio: {{curso.start_date}}</p>
+                <p>Fecha de finalización: {{curso.end_date}}</p>
             </mat-card-content>
             <mat-divider></mat-divider>
             <mat-card-actions>
@@ -31,7 +31,7 @@
                     Eliminar
                 </button>
                 <button mat-button color="info">
-                    <a routerLink="../../workshops/adddd">Abrir</a>
+                    <a class="abrir" routerLink="../../../workshops/listadoworkshops/{{curso.id}}">Abrir</a>
                 </button>
             </mat-card-actions>
         </mat-card>

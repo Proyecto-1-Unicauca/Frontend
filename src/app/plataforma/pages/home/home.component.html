@@ -15,7 +15,7 @@
                 <mat-icon mat-list-icon>account_circle</mat-icon>
                 <span>Cuenta</span>
             </a>
-            <a routerLink="./listado"
+            <a routerLink="./listado/:id"
                mat-list-item
                (click)="sidenav.toggle()">
                 <mat-icon mat-list-icon>label</mat-icon>
@@ -36,7 +36,7 @@
             <mat-icon>menu</mat-icon>
         </button>
         <span class="spacer"></span>
-        <button mat-button color="warn">
+        <button mat-button color="info" (click)="cerrarSesion()">
             <mat-icon>logout</mat-icon>
             Cerrar Sesión
         </button>

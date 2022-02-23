@@ -6,14 +6,20 @@ import { PlataformaRoutingModule } from './plataforma-routing.module';
 import { MaterialModule } from '../material/material.module';
 
 import { HomeComponent } from './pages/home/home.component';
-import { ListadoComponent } from './pages/listado/listado.component';
-import { AgregarComponent } from './pages/agregar/agregar.component';
+import { ListadoComponent } from './courses/pages/listado/listado.component';
+import { AgregarComponent } from './courses/pages/agregar/agregar.component';
+import { AgregarWorkshopComponent } from './workshops/pages/agregar-workshop/agregar-workshop.component';
+import { ListadoWorkshopComponent } from './workshops/pages/listado-workshop/listado-workshop.component';
+import { HomeWorkshopComponent } from './workshops/pages/home-workshop/home-workshop.component';
 
 @NgModule({
   declarations: [
     HomeComponent,
     ListadoComponent,
-    AgregarComponent
+    AgregarComponent,
+    AgregarWorkshopComponent,
+    ListadoWorkshopComponent,
+    HomeWorkshopComponent
   ],
   imports: [
     CommonModule,

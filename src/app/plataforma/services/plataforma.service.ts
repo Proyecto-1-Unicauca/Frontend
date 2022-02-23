@@ -9,12 +9,12 @@ export class PlataformaService {
 
   constructor(private http: HttpClient) { }
 
-  getSubjects() {
+  getCursos(id_teacher: any) {
     const httpHeader = new HttpHeaders({
       'Content-Type': 'application/jason'
     })
-
-    return this.http.get('http://127.0.0.1:8000/subjects', {headers: httpHeader});
+    const body =  {"teacher_id": 90909090};
+    return this.http.post('http://127.0.0.1:8000/courses', body, {headers: httpHeader});
   }
   
   postcourses(courses: any){

@@ -9,9 +9,13 @@ const routes: Routes = [
     loadChildren: () => import('./auth/auth.module').then(m => m.AuthModule)
   },
   {
-    path: 'platform',
-    loadChildren: () => import('./plataforma/plataforma.module').then(m => m.PlataformaModule)
-  }, 
+    path: 'courses',
+    loadChildren: () => import('./plataforma/courses/courses.module').then(m => m.CoursesModule)
+  },
+  {
+    path: 'workshops',
+    loadChildren: () => import('./plataforma/workshops/workshops.module').then(m => m.WorkshopsModule)
+  },
   {
     path: '404',
     component: ErrorPageComponent

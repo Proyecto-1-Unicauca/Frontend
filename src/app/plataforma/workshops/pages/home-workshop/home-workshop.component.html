@@ -1,1 +1,55 @@
-<p>home-workshop works!</p>
+<mat-sidenav-container fullscreen>
+    <mat-sidenav #sidenav mode="push">
+        <mat-toolbar>
+            <span>Menú</span>
+            <span class="spacer"></span>
+            <button mat-icon-button
+                    (click)="sidenav.toggle()" color="">
+                <mat-icon>menu</mat-icon>
+            </button>
+        </mat-toolbar>
+        <mat-nav-list>
+            <a routerLink="listadoworkshops/:courseId"
+               mat-list-item
+               (click)="sidenav.toggle()">
+                <mat-icon mat-list-icon>label</mat-icon>
+                <span>Listado de workshop</span>
+            </a>
+            <a routerLink="./listadoestudiante"
+               mat-list-item
+               (click)="sidenav.toggle()">
+                <mat-icon mat-list-icon>label</mat-icon>
+                <span>Listado Estudiantes</span>
+            </a>
+            <a routerLink="./agregar"
+               mat-list-item
+               (click)="sidenav.toggle()">
+                <mat-icon mat-list-icon>add</mat-icon>
+                <span> Agregar workshop</span>
+            </a>
+            <a routerLink="./crearestudiante"
+               mat-list-item
+               (click)="sidenav.toggle()">
+                <mat-icon mat-list-icon>add</mat-icon>
+                <span>Agregar Estudiante</span>
+            </a>
+        </mat-nav-list>   
+    </mat-sidenav>
+
+    <mat-toolbar>
+        <button mat-button
+                (click)="sidenav.toggle()" color="">
+            <mat-icon>menu</mat-icon>
+        </button>
+        <span class="spacer"></span>
+        <button mat-button color="info">
+            <mat-icon>logout</mat-icon>
+            Cerrar Sesión
+        </button>
+    </mat-toolbar>
+
+    <div class="contenido">
+        <router-outlet></router-outlet>
+    </div>
+    
+</mat-sidenav-container>

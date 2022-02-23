@@ -1,0 +1,61 @@
+<h1>Talleres: </h1>
+<mat-divider fullscreen></mat-divider>
+<br>
+<!--
+<mat-drawer-container class="padreAside" >
+
+  <mat-drawer class="aside" mode="side" opened>
+
+    <div>
+      <div>
+        Estudiantes
+      </div>
+
+      <div>
+        <img class="image" src="./assets/img/companero-de-equipo.png">
+      </div>
+    </div>
+    <hr>
+    <div >
+      <div>
+        Practicas
+      </div>
+      <div>
+        <img class="image" src="./assets/img/taller.png">
+      </div>
+    </div>
+
+  </mat-drawer>
+  <mat-drawer-content>
+    </mat-drawer-content>
+
+</mat-drawer-container>
+    -->
+
+<div fxLayout="row wrap" fxLayout.xs="column" fxLayoutGap="50px" fxLayoutAlign="center">
+  <div fxFlex="20" fxFlex.sm="45" fxFlex.md="30" *ngFor="let workshop of workshops">
+
+    <mat-card class="stayleCard">
+      <mat-card-header>
+        <div> Tema: {{workshop.topicId}} </div>
+      </mat-card-header>
+      <hr>
+      <!-- <img mat-card-image src="" alt=""> -->
+      <mat-card-content>
+        <p>Fecha inicio: {{workshop.startAvailable}} </p>
+        <p>Fecha final: {{workshop.endAvailable}} </p>
+
+        <mat-slide-toggle>Habilitar: {{isChecked}}</mat-slide-toggle>
+
+      </mat-card-content>
+      <mat-card-actions>
+        <button mat-button color="warn">
+          Eliminar
+        </button>
+        <button mat-button color="info">
+          Editar
+        </button>
+      </mat-card-actions>
+    </mat-card>
+  </div>
+</div>

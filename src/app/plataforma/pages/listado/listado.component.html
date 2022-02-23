@@ -1,23 +1,15 @@
 <h1>Cursos: </h1>
 <mat-divider fullscreen></mat-divider>
 <br>
+<div fxLayout="row wrap" fxLayout.xs="column" fxLayoutAlign="center" fxLayoutGap="20px">
+    <div fxFlex="20" fxFlex.sm="45" fxFlex.md="30" *ngFor="let subject of subjects">
 
-<div fxLayout="row wrap"
-     fxLayout.xs="column"
-     fxLayoutAlign="center"
-     fxLayoutGap="20px"
-     >
-    <div fxFlex="20"
-         fxFlex.sm="45"
-         fxFlex.md="30"
-         *ngFor="let subject of subjects">
-        
-         <mat-card >
+        <mat-card>
             <mat-card-header>
                 <mat-card-title> {{subject.subjectName}} </mat-card-title>
                 <mat-card-subtitle> Subtitulo </mat-card-subtitle>
             </mat-card-header>
-        
+
             <!-- <img mat-card-image src="" alt=""> -->
             <mat-card-content>
                 <h3>Contenido</h3>
@@ -32,5 +24,5 @@
                 </button>
             </mat-card-actions>
         </mat-card>
-    </div> 
+    </div>
 </div>

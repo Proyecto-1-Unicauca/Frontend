@@ -3,36 +3,45 @@
         <mat-toolbar>
             <span>Menú</span>
             <span class="spacer"></span>
-            <button mat-icon-button
-                    (click)="sidenav.toggle()" color="">
+            <button mat-icon-button (click)="sidenav.toggle()" color="">
                 <mat-icon>menu</mat-icon>
             </button>
         </mat-toolbar>
         <mat-nav-list>
-            <a routerLink=" "
-               mat-list-item
-               (click)="sidenav.toggle()">
+            <a routerLink=" " mat-list-item (click)="sidenav.toggle()">
                 <mat-icon mat-list-icon>account_circle</mat-icon>
                 <span>Cuenta</span>
             </a>
-            <a routerLink="./listado"
-               mat-list-item
-               (click)="sidenav.toggle()">
+            <a routerLink="./listado" mat-list-item (click)="sidenav.toggle()">
                 <mat-icon mat-list-icon>label</mat-icon>
                 <span> Listado de Cursos</span>
             </a>
-            <a routerLink="./agregar"
-               mat-list-item
-               (click)="sidenav.toggle()">
+            <mat-toolbar-row>
+            <a routerLink="./listado" mat-list-item *ngIf="ruta=='/platform/workshops'"
+                (click)=" sidenav.toggle()">
+                <mat-icon mat-list-icon>label</mat-icon>
+                <span> Estudiantes </span>
+            </a>
+            
+        </mat-toolbar-row>
+    <mat-toolbar-row>
+        <a routerLink="./listado" mat-list-item *ngIf="ruta=='/platform/workshops'"
+        (click)=" sidenav.toggle()">
+        <mat-icon mat-list-icon>label</mat-icon>
+        <span> Crear practica </span>
+    </a>
+    </mat-toolbar-row>
+            <a routerLink="./agregar" mat-list-item (click)="sidenav.toggle()">
                 <mat-icon mat-list-icon>add</mat-icon>
                 <span>Crear Curso</span>
             </a>
-        </mat-nav-list>   
+            
+
+        </mat-nav-list>
     </mat-sidenav>
 
     <mat-toolbar>
-        <button mat-button
-                (click)="sidenav.toggle()" color="">
+        <button mat-button (click)="sidenav.toggle()" color="">
             <mat-icon>menu</mat-icon>
         </button>
         <span class="spacer"></span>
@@ -45,9 +54,5 @@
     <div class="contenido">
         <router-outlet></router-outlet>
     </div>
-    
+
 </mat-sidenav-container>
-
-
-
-

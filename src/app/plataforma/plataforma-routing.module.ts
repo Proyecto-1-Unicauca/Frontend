@@ -3,7 +3,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { ListadoComponent } from './pages/listado/listado.component';
 import { AgregarComponent } from './pages/agregar/agregar.component';
 import { HomeComponent } from './pages/home/home.component';
-
+import { WorkshopsComponent } from './pages/workshops/listado/workshops.component';
 const routes: Routes = [
   {
     path: '',
@@ -16,6 +16,10 @@ const routes: Routes = [
       {
         path: 'agregar',
         component: AgregarComponent
+      },
+      {
+        path: 'workshops',
+        component: WorkshopsComponent
       },
       {
         path: '**',

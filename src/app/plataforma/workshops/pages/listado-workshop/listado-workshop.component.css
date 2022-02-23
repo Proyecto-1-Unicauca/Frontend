@@ -1,0 +1,19 @@
+.stayleCard {
+    margin: 0;
+    max-width: 400px;
+    max-height: 300px;
+    
+  }
+  html {
+    height:100%;
+  }
+  .aside {
+    width: 8vw;
+    height: 100vh;
+    border: 1px solid #555;
+  }
+  .padreAside{
+    height: 100vh;
+  }
+  
+  

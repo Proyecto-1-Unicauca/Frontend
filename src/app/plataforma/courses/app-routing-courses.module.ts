@@ -1,8 +1,10 @@
 import { NgModule } from '@angular/core';
+import { CommonModule } from '@angular/common';
 import { Routes, RouterModule } from '@angular/router';
+import { HomeComponent } from './pages/home/home.component';
 import { ListadoComponent } from './pages/listado/listado.component';
 import { AgregarComponent } from './pages/agregar/agregar.component';
-import { HomeComponent } from './pages/home/home.component';
+
 
 const routes: Routes = [
   {
@@ -10,22 +12,19 @@ const routes: Routes = [
     component: HomeComponent,
     children: [
       {
-        path: 'listado',
+        path: 'listado/:userId',
         component: ListadoComponent
       },
       {
         path: 'agregar',
         component: AgregarComponent
-      },
-      {
-        path: '**',
-        redirectTo: 'listado'
       }
     ]
   }
 ]
 
 @NgModule({
+
   imports: [
     RouterModule.forChild(routes)
   ],
@@ -33,4 +32,4 @@ const routes: Routes = [
     RouterModule
   ]
 })
-export class PlataformaRoutingModule { }
+export class AppRoutingCoursesModule { }

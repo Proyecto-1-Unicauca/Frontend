@@ -9,23 +9,29 @@
             </button>
         </mat-toolbar>
         <mat-nav-list>
-            <a routerLink=" "
-               mat-list-item
-               (click)="sidenav.toggle()">
-                <mat-icon mat-list-icon>account_circle</mat-icon>
-                <span>Cuenta</span>
-            </a>
-            <a routerLink="./listado"
+            <a routerLink="listadoworkshops/:courseId"
                mat-list-item
                (click)="sidenav.toggle()">
                 <mat-icon mat-list-icon>label</mat-icon>
-                <span> Listado de Cursos</span>
+                <span>Listado de workshop</span>
+            </a>
+            <a routerLink="./listadoestudiante"
+               mat-list-item
+               (click)="sidenav.toggle()">
+                <mat-icon mat-list-icon>label</mat-icon>
+                <span>Listado Estudiantes</span>
             </a>
             <a routerLink="./agregar"
                mat-list-item
                (click)="sidenav.toggle()">
                 <mat-icon mat-list-icon>add</mat-icon>
-                <span>Crear Curso</span>
+                <span> Agregar workshop</span>
+            </a>
+            <a routerLink="./crearestudiante"
+               mat-list-item
+               (click)="sidenav.toggle()">
+                <mat-icon mat-list-icon>add</mat-icon>
+                <span>Agregar Estudiante</span>
             </a>
         </mat-nav-list>   
     </mat-sidenav>
@@ -36,7 +42,7 @@
             <mat-icon>menu</mat-icon>
         </button>
         <span class="spacer"></span>
-        <button mat-button color="warn">
+        <button mat-button color="info">
             <mat-icon>logout</mat-icon>
             Cerrar Sesión
         </button>
@@ -47,7 +53,3 @@
     </div>
     
 </mat-sidenav-container>
-
-
-
-

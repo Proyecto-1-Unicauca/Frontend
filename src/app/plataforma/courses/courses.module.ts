@@ -1,25 +1,26 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FlexLayoutModule } from '@angular/flex-layout';
-
-import { PlataformaRoutingModule } from './plataforma-routing.module';
-import { MaterialModule } from '../material/material.module';
-
+import { AppRoutingCoursesModule } from './app-routing-courses.module';
 import { HomeComponent } from './pages/home/home.component';
 import { ListadoComponent } from './pages/listado/listado.component';
 import { AgregarComponent } from './pages/agregar/agregar.component';
+import { FlexLayoutModule } from '@angular/flex-layout';
+import { MaterialModule } from '../../material/material.module';
+
+
 
 @NgModule({
   declarations: [
     HomeComponent,
     ListadoComponent,
-    AgregarComponent
+    AgregarComponent,
+   
   ],
   imports: [
     CommonModule,
     FlexLayoutModule,
     MaterialModule,
-    PlataformaRoutingModule
+    AppRoutingCoursesModule
   ]
 })
-export class PlataformaModule { }
+export class CoursesModule { }

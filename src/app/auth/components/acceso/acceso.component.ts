@@ -27,16 +27,15 @@ export class AccesoComponent implements OnInit {
         this.Login.postLogin(data.email)
         .subscribe( resp => {
           this.rta = resp;
-
-         console.log( this.rta);
+          console.log(this.rta);
+          
+          if(this.rta.message === 'Email found'){
+            console.log("uSER FOUN");
+            
+            this.router.navigate([`/courses/listado/${this.rta.userId}`]);
+          }
         });
-
-        if(Object.is(this.rta.message.getString(),'Email found')){
-            this.router.navigate(['./sitio-principal/main']);
-        }
       }      
     );
-    
-    
   }
 }

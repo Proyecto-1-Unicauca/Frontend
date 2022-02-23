@@ -29,7 +29,7 @@ export class ListadoComponent implements OnInit {
         console.log(resp);
         
         this.respuesta = resp;
-        this.cursos = this.respuesta.courses;
+        this.cursos = this.respuesta.courses.courses;
         console.log(this.cursos);
       })
     

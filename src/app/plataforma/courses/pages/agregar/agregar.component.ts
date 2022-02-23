@@ -24,7 +24,7 @@ export class AgregarComponent implements OnInit {
 
   ngOnInit(): void {
 
-    this.labServicios.getSubjects()
+    this.labServicios.getCursos(1)
       .subscribe(resp => {
         this.subjectsss = resp;
       });

@@ -32,7 +32,7 @@ export class AccesoComponent implements OnInit {
           if(this.rta.message === 'Email found'){
             console.log("uSER FOUN");
             
-            this.router.navigate([`/platform/listado/${this.rta.userId}`]);
+            this.router.navigate([`/courses/listado/${this.rta.userId}`]);
           }
         });
       }      

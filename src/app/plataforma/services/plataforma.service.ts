@@ -14,7 +14,7 @@ export class PlataformaService {
       'Content-Type': 'application/jason'
     })
     const body =  {"teacher_id": 90909090};
-    return this.http.post('http://127.0.0.1:8000/courses', body, {headers: httpHeader});
+    return this.http.get('http://127.0.0.1:8000/courses/'+id_teacher, {headers: httpHeader});
   }
   
   postcourses(courses: any){

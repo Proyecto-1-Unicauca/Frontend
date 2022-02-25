@@ -8,6 +8,7 @@ import { MaterialModule } from '../../material/material.module';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { ListadoEstudiantesComponent } from './pages/listado-estudiantes/listado-estudiantes.component';
 import { AgregarEstudianteComponent } from './pages/agregar-estudiante/agregar-estudiante.component';
+import { FormsModule } from '@angular/forms'; 
 
 
 
@@ -24,7 +25,8 @@ import { AgregarEstudianteComponent } from './pages/agregar-estudiante/agregar-e
     CommonModule,
     MaterialModule,
     FlexLayoutModule,
-    AppRoutingWorkshopsModule
+    AppRoutingWorkshopsModule,
+    FormsModule
   ]
 })
 export class WorkshopsModule { }

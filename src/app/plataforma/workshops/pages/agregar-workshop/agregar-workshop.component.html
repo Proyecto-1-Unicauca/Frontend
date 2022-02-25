@@ -1,1 +1,67 @@
-<p>agregar-workshop works!</p>
+
+<div class="abs-center col-15">
+  <form form >
+    <h1>Agregar Taller</h1>
+    <div class="form-group row">
+      <label for="my-input" class="col-form-label col-sm-8">Titulo</label>
+    </div>
+
+    <div class="col-sm-6">
+      <mat-form-field appearance="fill" fxFlex="100">
+      <mat-label>Name</mat-label>
+      <input type="text" matInput placeholder="Name"  [(ngModel)]="materia.titulo"  name="titulo">
+      </mat-form-field>
+    </div>
+
+    <div class="form-group row">
+        <label for="my-input" class="col-form-label col-sm-8">Descripcion</label>
+      </div>
+  
+      <div class="col-sm-6">
+        <mat-form-field appearance="fill" fxFlex="100">
+        <mat-label></mat-label>
+        <input type="text" matInput placeholder=""  [(ngModel)]="materia.descripcion"  name="descripcion">
+        </mat-form-field>
+      </div>
+
+      <div class="form-group row">
+        <label for="my-input" class="col-form-label col-sm-8">Sensores</label>
+      </div>
+  
+      <div class="col-sm-6">
+        <mat-form-field appearance="fill" fxFlex="100">
+        <mat-label></mat-label>
+        <input type="text" matInput placeholder=""  [(ngModel)]="materia.descripcion"  name="sensores">
+        </mat-form-field>
+      </div>
+
+      <div class="form-group row">
+        <label for="my-input" class="col-form-label col-sm-8">Dic Ip</label>
+      </div>
+  
+      <div class="col-sm-6">
+        <mat-form-field appearance="fill" fxFlex="100">
+        <mat-label></mat-label>
+        <input type="text" matInput placeholder=""  [(ngModel)]="materia.descripcion"  name="dirIp">
+        </mat-form-field>
+      </div>
+
+
+    <div   class="form-group row">
+      <label for="my-input" class="col-form-label col-sm-2">Fecha Limite </label>
+    </div>
+    <div class="col-sm-6">
+      <input matInput [matDatepicker]="mitDatepicker2" class="form-control" style="display:inline; width:300px;"  [(ngModel)]="materia.end" name="fechaLimite">
+      <mat-datepicker-toggle matSuffix [for]="mitDatepicker2"></mat-datepicker-toggle>
+      <mat-datepicker #mitDatepicker2></mat-datepicker>
+    </div>
+
+    <button type="submit" class="btn btn-success" (click)="save()"  > 
+      <mat-icon>
+        edit
+      </mat-icon>
+      guardar
+    </button>
+  </form>
+  
+</div>

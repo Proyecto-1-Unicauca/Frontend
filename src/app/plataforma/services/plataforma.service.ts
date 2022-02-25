@@ -36,4 +36,10 @@ export class PlataformaService {
     })
     return this.http.get('http://127.0.0.1:8000/topics/'+topic,{headers: httpHeader});
   }
+  getSubjects() {
+    const httpHeader = new HttpHeaders({
+      'Content-Type': 'application/jason'
+    })
+    return this.http.get('http://127.0.0.1:8000/subjects', {headers: httpHeader});
+  }
 }

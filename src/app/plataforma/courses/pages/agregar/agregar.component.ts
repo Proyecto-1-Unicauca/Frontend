@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, FormControl, Validators } from '@angular/forms';
 import { MAT_DATE_LOCALE } from '@angular/material/core';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { PlataformaService } from '../../../services/plataforma.service';
@@ -12,46 +12,49 @@ import { PlataformaService } from '../../../services/plataforma.service';
 })
 export class AgregarComponent implements OnInit {
 
-  public form!: FormGroup;
-  subjectsss: any = [];
+  form!: FormGroup;
+  subjectsss: any = {};
   valu2: any = [];
+
+  
 
   constructor(
     private labServicios: PlataformaService,
-    private formbuilder: FormBuilder) {
+    public formbuilder: FormBuilder) {
     this.buildForm();
   }
 
   ngOnInit(): void {
-
-    this.labServicios.getCursos(1)
+   this.labServicios.getSubjects()
       .subscribe(resp => {
-        this.subjectsss = resp;
+        console.log(resp);
+        this.subjectsss=resp;
       });
-
-    console.log(this.form.value + "TESTO");
-    
   }
 
   private buildForm() {
     this.form = this.formbuilder.group({
       name: ['', [Validators.required]],
-      start: ['', [Validators.required]],
-      end: ['', [Validators.required]],
+      start: [new FormControl(), [Validators.required]],
+      end: [new FormControl(), [Validators.required]],
       subject_id: ['', [Validators.required]],
-    });
+    }) ;
   }
 
   //Metodo para guarda la informacion del formulario
   save() {
-    console.log(this.form + "TESTO");
     const value = this.form.value;
-    this.labServicios.postcourses(value).subscribe(data => { this.valu2 = data });
-    console.log(this.form);
+    this.labServicios.postcourses(this.form.value).subscribe(data => { this.valu2 = data });
+    console.log(this.valu2);
   }
 
-  MENSAJE(){
-    console.log("Josman");
+  onSubmit() {
+    if (this.form.valid) {
+      this.save();
+      console.log(this.form.value);
+    } else {
+      alert("FILL ALL FIELDS");
+    }
   }
 
 }

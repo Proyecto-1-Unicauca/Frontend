@@ -24,10 +24,10 @@ export class AgregarComponent implements OnInit {
 
   ngOnInit(): void {
 
-    this.labServicios.getSubjects()
+    /* this.labServicios.getSubjects()
       .subscribe(resp => {
         this.subjectsss = resp;
-      });
+      }); */
 
     console.log(this.form.value + "TESTO");
     

@@ -10,6 +10,7 @@ import { PlataformaService } from '../../../services/plataforma.service';
   templateUrl: './agregar.component.html',
   styleUrls: ['./agregar.component.css'],
 })
+
 export class AgregarComponent implements OnInit {
 
   form!: FormGroup;
@@ -44,14 +45,14 @@ export class AgregarComponent implements OnInit {
   //Metodo para guarda la informacion del formulario
   save() {
     const value = this.form.value;
-    this.labServicios.postcourses(this.form.value).subscribe(data => { this.valu2 = data });
-    console.log(this.valu2);
+    alert(this.labServicios.postcourses(this.form.value).subscribe(data => { this.valu2 = data }));
   }
+
 
   onSubmit() {
     if (this.form.valid) {
       this.save();
-      console.log(this.form.value);
+      alert("CURSO REGISTRADO");
     } else {
       alert("FILL ALL FIELDS");
     }

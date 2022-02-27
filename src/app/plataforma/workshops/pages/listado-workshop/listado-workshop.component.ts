@@ -26,15 +26,15 @@ export class ListadoWorkshopComponent implements OnInit {
        ) { }
   
     ngOnInit(): void {
-      /*console.log("Entro");
+      console.log("Entro");
       this.activatedRoute.params
         .subscribe(courseId => this.courseId = courseId);
 
-      console.log(this.courseId.id);*/
+      console.log(this.courseId.id);
       
 
       
-        this.labServicios.getWorkshops()
+        this.labServicios.getWorkshopsById(this.courseId.id)
         .subscribe( resp => {
           console.log(resp);
           this.respuesta = resp;

@@ -1,6 +1,8 @@
 <h1>Cursos: </h1>
 <mat-divider fullscreen></mat-divider>
 <br>
+<div fxLayout="row wrap" fxLayout.xs="column" fxLayoutAlign="center" fxLayoutGap="20px">
+    <div fxFlex="20" fxFlex.sm="45" fxFlex.md="30" *ngFor="let subject of subjects">
 
 <div fxLayout="row wrap"
      fxLayout.xs="column"
@@ -17,7 +19,7 @@
                 <mat-card-title> {{curso.name}} </mat-card-title>
                 <mat-card-subtitle> Codigó de acceso: <strong> {{curso.accessKey}} </strong></mat-card-subtitle>
             </mat-card-header>
-        
+
             <!-- <img mat-card-image src="" alt=""> -->
             <mat-divider></mat-divider>
             <br>
@@ -35,5 +37,10 @@
                 </button>
             </mat-card-actions>
         </mat-card>
+<<<<<<< HEAD:src/app/plataforma/pages/listado/listado.component.html
+    </div>
+</div>
+=======
     </div> 
 </div> 
+>>>>>>> origin/staging:src/app/plataforma/courses/pages/listado/listado.component.html

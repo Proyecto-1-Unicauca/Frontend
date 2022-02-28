@@ -30,11 +30,11 @@ export class PlataformaService {
     return this.http.get('http://127.0.0.1:8000/workshops',{headers: httpHeader});
   }
 
-  getWorkshopsById(cousesId: any){
+  getWorkshopsById(coursesId: any){
     const httpHeader = new HttpHeaders({
       'Content-Type': 'application/jason'
     })
-    return this.http.get('http://127.0.0.1:8000/'+cousesId+'workshops',{headers: httpHeader});
+    return this.http.get(`http://127.0.0.1:8000/courses/${coursesId}/workshops`,{headers: httpHeader});
   }
 
   getTopics(topic: any){
@@ -42,5 +42,11 @@ export class PlataformaService {
       'Content-Type': 'application/jason'
     })
     return this.http.get('http://127.0.0.1:8000/topics/'+topic,{headers: httpHeader});
+  }
+  deleteWorkShops(workshopId: any){
+    const httpHeader = new HttpHeaders({
+      'Content-Type': 'application/jason'
+    })
+    return this.http.delete(`http://127.0.0.1:8000/workshops/${workshopId}`,{headers: httpHeader});
   }
 }

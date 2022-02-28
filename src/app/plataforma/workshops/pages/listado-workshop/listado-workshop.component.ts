@@ -12,40 +12,49 @@ import { ActivatedRoute } from '@angular/router';
 export class ListadoWorkshopComponent implements OnInit {
 
   respuesta: any = {};
-    workshops: any = [];
-    respuestaTopic: any ={};
-    courseId: any = '';
+  workshops: any = [];
+  respuestaTopic: any = {};
+  courseId: any = '';
 
-    isChecked = true;
-    topic = "";
-  
+  isChecked = true;
+  topic = "";
 
-    constructor(
-      private labServicios: PlataformaService,
-      private activatedRoute: ActivatedRoute
-       ) { }
-  
-    ngOnInit(): void {
-      console.log("Entro");
-      this.activatedRoute.params
-        .subscribe(courseId => this.courseId = courseId);
 
-      console.log(this.courseId.id);
-      
+  constructor(
+    private labServicios: PlataformaService,
+    private activatedRoute: ActivatedRoute
+  ) { }
 
-      
-        this.labServicios.getWorkshopsById(this.courseId.id)
-        .subscribe( resp => {
-          console.log(resp);
-          this.respuesta = resp;
-          this.workshops = this.respuesta.workshops;
-          console.log(this.workshops);
+  ngOnInit(): void {
+    console.log("Entro");
+    this.activatedRoute.params
+      .subscribe(courseId => this.courseId = courseId);
 
-          /* this.labServicios.getTopics(this.workshops[0].topicId).subscribe(resp=>{
+    console.log(this.courseId.courseId);
+
+    this.labServicios.getWorkshopsById(this.courseId.courseId)
+      .subscribe(resp => {
+        this.respuesta = resp;
+        this.workshops = this.respuesta.workshops;
+        for (let workshop of this.workshops ){
+          this.labServicios.getTopics(workshop.topicId).subscribe(resp=>{
             this.respuesta=resp;
-            this.topic = this.respuesta.topic.name;
-            console.log(this.topic);
-          }) */
-        });
-    } 
+            if(workshop.topicId == this.respuesta.topic.id){
+              this.topic = this.respuesta.topic.name;
+              workshop.nameTopic=this.topic;
+            }
+          }) 
+        }
+      });
+  }
+   public deleteWorkshop(idWorkshop:any){
+    console.log("Entró eliminar")
+    this.labServicios.deleteWorkShops(idWorkshop)
+    .subscribe(resp => {
+      this.respuesta = resp;
+      this.workshops = this.respuesta.workshops;
+      console.log(this.workshops)
+      window.location.reload();
+    });
+  }
 }

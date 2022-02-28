@@ -1,9 +1,6 @@
 <h1>Cursos: </h1>
 <mat-divider fullscreen></mat-divider>
 <br>
-<div fxLayout="row wrap" fxLayout.xs="column" fxLayoutAlign="center" fxLayoutGap="20px">
-    <div fxFlex="20" fxFlex.sm="45" fxFlex.md="30" *ngFor="let subject of subjects">
-
 <div fxLayout="row wrap"
      fxLayout.xs="column"
      fxLayoutAlign="center"
@@ -33,14 +30,9 @@
                     Eliminar
                 </button>
                 <button mat-button color="info">
-                    <a routerLink="../../workshops/adddd">Abrir</a>
+                    <a routerLink='/workshops/listadoworkshops/{{curso.id}}'>Abrir</a>
                 </button>
             </mat-card-actions>
         </mat-card>
-<<<<<<< HEAD:src/app/plataforma/pages/listado/listado.component.html
-    </div>
-</div>
-=======
     </div> 
 </div> 
->>>>>>> origin/staging:src/app/plataforma/courses/pages/listado/listado.component.html

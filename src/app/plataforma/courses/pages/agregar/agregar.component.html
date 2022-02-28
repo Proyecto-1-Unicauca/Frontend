@@ -1,5 +1,4 @@
-
-  <h1>Agregar cursos</h1>
+<h1>Agregar cursos</h1>
 <div class="abs-center ">
   <form  [formGroup]="form" (ngSubmit)="onSubmit()" >
     <div class="form-group row">
@@ -13,15 +12,14 @@
       </mat-form-field>
     </div>
 
-
     <div   class="form-group row">
       <label for="my-input" class="col-form-label col-sm-8">Fecha Inicio - Fecha Final </label>
     </div> 
 
-    <mat-form-field appearance="fill">
+     <mat-form-field appearance="fill">
       <mat-label>Enter a date range</mat-label>
       <mat-date-range-input [formGroup]="form" [rangePicker]="picker">
-        <input matStartDate formControlName="start" placeholder="Start date">
+        <input matStartDate lass="col-form-label col-sm-8" formControlName="start" placeholder="Start date">
         
         <input matEndDate formControlName="end" placeholder="End date">
       </mat-date-range-input>

@@ -9,7 +9,7 @@ import { FlexLayoutModule } from '@angular/flex-layout';
 import { ListadoEstudiantesComponent } from './pages/listado-estudiantes/listado-estudiantes.component';
 import { AgregarEstudianteComponent } from './pages/agregar-estudiante/agregar-estudiante.component';
 import { FormsModule } from '@angular/forms'; 
-
+import { ReactiveFormsModule } from '@angular/forms';
 
 
 @NgModule({
@@ -26,7 +26,8 @@ import { FormsModule } from '@angular/forms';
     MaterialModule,
     FlexLayoutModule,
     AppRoutingWorkshopsModule,
-    FormsModule
+    FormsModule,
+    ReactiveFormsModule
   ]
 })
 export class WorkshopsModule { }

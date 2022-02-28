@@ -1,8 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { PlataformaService } from '../../../services/plataforma.service';
+import {COMMA, ENTER} from '@angular/cdk/keycodes';
+import {MatChipInputEvent} from '@angular/material/chips';
 
+export interface Ip {
+  name: string;
+}
 
 @Component({
   selector: 'app-agregar-workshop',
@@ -10,40 +14,67 @@ import { PlataformaService } from '../../../services/plataforma.service';
   styleUrls: ['./agregar-workshop.component.css']
 })
 export class AgregarWorkshopComponent implements OnInit {
-
-  materia:any={
-    titulo: '',
-    descripcion:'',
-    sensores:'',
-    dirIp:'',
-    fechaLimite:'',
-  }
-  form: any;
+  addOnBlur = true;
+  readonly separatorKeysCodes = [ENTER, COMMA] as const;
+  ips: Ip[] = [];
+  form!: FormGroup;
   valu2: any;
 
   constructor(   
     private labServicios: PlataformaService,
-    private formbuilder: FormBuilder
-
-  ) { }
+    private formbuilder: FormBuilder) { 
+    this.buildForm();
+  }
 
   ngOnInit(): void {
   }
 
   private buildForm() {
     this.form = this.formbuilder.group({
-      name: ['', [Validators.required]],
-      start: ['', [Validators.required]],
-      end: ['', [Validators.required]],
-      subject_id: ['', [Validators.required]],
+      titulo: ['', [Validators.required]],
+      descripcion: ['', [Validators.required]],
+      sensores: ['', [Validators.required]],
+      dirIp: ['', [Validators.required]],
+      fechalimite: ['', [Validators.required]],
+
     }) ;
   }
 
   save() {
-    console.log(this.materia);
+    console.log(this.form.value);
+    console.log(this.ips)
     const value = this.form.value;
-    console.log(JSON.stringify(this.materia))
-    this.labServicios.postcourses(JSON.stringify(this.materia)).subscribe(data => { this.valu2 = data });
+    console.log(JSON.stringify(this.form))
+    this.labServicios.postcourses(this.form.value).subscribe(data => { this.valu2 = data });
   }
 
+  
+  onSubmit() {
+    if (this.form.valid) {
+      this.save();
+      alert("CURSO REGISTRADO");
+    } else {
+      alert("Debe LLenar todos los campos");
+    }
+  }
+
+  add(event: MatChipInputEvent): void {
+    const value = (event.value || '').trim();
+
+    // Add our fruit
+    if (value) {
+      this.ips.push({name: value});
+    }
+
+    // Clear the input value
+    event.chipInput!.clear();
+  }
+
+  remove(fruit: Ip): void {
+    const index = this.ips.indexOf(fruit);
+
+    if (index >= 0) {
+      this.ips.splice(index, 1);
+    }
+  }
 }

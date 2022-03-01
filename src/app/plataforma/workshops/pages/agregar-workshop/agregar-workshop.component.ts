@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { PlataformaService } from '../../../services/plataforma.service';
 import {COMMA, ENTER} from '@angular/cdk/keycodes';
 import {MatChipInputEvent} from '@angular/material/chips';
+import {MatBottomSheet, MatBottomSheetRef} from  '@angular/material/bottom-sheet' ;
 
 export interface Ip {
   name: string;
@@ -19,6 +20,7 @@ export class AgregarWorkshopComponent implements OnInit {
   ips: Ip[] = [];
   form!: FormGroup;
   valu2: any;
+  topics: any = {};
 
   constructor(   
     private labServicios: PlataformaService,
@@ -27,6 +29,11 @@ export class AgregarWorkshopComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.labServicios.getTopics()
+    .subscribe(resp => {
+      console.log(resp);
+      this.topics=resp;
+     });
   }
 
   private buildForm() {
@@ -35,8 +42,9 @@ export class AgregarWorkshopComponent implements OnInit {
       descripcion: ['', [Validators.required]],
       sensores: ['', [Validators.required]],
       dirIp: ['', [Validators.required]],
-      fechalimite: ['', [Validators.required]],
-
+      start: ['', [Validators.required]],
+      end: ['', [Validators.required]],
+      tema:['',[Validators.required]],
     }) ;
   }
 

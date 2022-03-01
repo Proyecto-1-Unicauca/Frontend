@@ -14,7 +14,7 @@ import {MatSelectModule} from '@angular/material/select';
 import {MatSlideToggleModule} from '@angular/material/slide-toggle';
 import {MatChip, MatChipInput, MatChipsModule} from '@angular/material/chips';
 import {MatChipInputEvent} from '@angular/material/chips';
-
+import {MatBottomSheet, MatBottomSheetRef} from  '@angular/material/bottom-sheet' ;
 
 @NgModule({
   exports: [
@@ -31,7 +31,6 @@ import {MatChipInputEvent} from '@angular/material/chips';
     MatSelectModule,
     MatSlideToggleModule,
     MatChipsModule,
-    
   ]
 })
 export class MaterialModule { }

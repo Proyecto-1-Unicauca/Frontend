@@ -1,50 +1,50 @@
 <h1>Agregar cursos</h1>
-
-<div class="col-8">
-  <form form (ngSubmit)="MENSAJE()">
-
-
+<div class="abs-center ">
+  <form  [formGroup]="form" (ngSubmit)="onSubmit()" >
     <div class="form-group row">
       <label for="my-input" class="col-form-label col-sm-8">Nombre de la Materia</label>
     </div>
 
-    <div class="col-sm-6">
+    <div class="form-group row">
       <mat-form-field appearance="fill">
       <mat-label>Nombre de la materia</mat-label>
-      <input type="name" matInput placeholder="Mecanica"  formControlName="name">
+      <input type="text" matInput placeholder="Mecanica" formControlName="name" name="name">
       </mat-form-field>
     </div>
 
     <div   class="form-group row">
-      <label for="my-input" class="col-form-label col-sm-2">Fecha Fin </label>
-    </div> 
-    <div  class="col-sm-6">
-      <input matInput [matDatepicker]="mitDatepicker" class="form-control" style="display:inline; width:300px;"  formControlName="star" >
-      <mat-datepicker-toggle matSuffix [for]="mitDatepicker"></mat-datepicker-toggle>
-      <mat-datepicker #mitDatepicker></mat-datepicker>
+      <label for="my-input" class="col-form-label col-sm-8">Fecha Inicio - Fecha Final </label>
     </div> 
 
+     <mat-form-field appearance="fill">
+      <mat-label>Enter a date range</mat-label>
+      <mat-date-range-input [formGroup]="form" [rangePicker]="picker">
+        <input matStartDate lass="col-form-label col-sm-8" formControlName="start" placeholder="Start date">
+        
+        <input matEndDate formControlName="end" placeholder="End date">
+       </mat-date-range-input>
+       <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+      <mat-date-range-picker #picker></mat-date-range-picker>
+    </mat-form-field>
+    
 
-    <div   class="form-group row">
-      <label for="my-input" class="col-form-label col-sm-2">Fecha Fin </label>
-    </div>
-    <div class="col-sm-6">
-      <input matInput [matDatepicker]="mitDatepicker2" class="form-control" style="display:inline; width:300px;" formControlName="end">
-      <mat-datepicker-toggle matSuffix [for]="mitDatepicker2"></mat-datepicker-toggle>
-      <mat-datepicker #mitDatepicker2></mat-datepicker>
-    </div>
     <div class="form-group row">
       <h4>TIPO DE MATERIA</h4>
       <mat-form-field appearance="fill">
         <mat-label> Elije tipo materia </mat-label>
-        <mat-select>
-          <mat-option *ngFor="let food of subjectsss.subjects" formControlName="subject_id" >
+        <mat-select  formControlName="subject_id" name="subject_id">
+          <mat-option *ngFor="let food of subjectsss.subjects" value=" {{food.subjectName}}">  
            {{food.subjectName}}
           </mat-option>
         </mat-select>
       </mat-form-field>
     </div>
-    <button type="submit" class="btn btn-success" (click)="MENSAJE()">Guardar</button>
+    <button type="submit" class="btn btn-success"  > 
+      
+      <mat-icon>
+        edit
+      </mat-icon>
+      guardar
+    </button>
   </form>
-  
 </div>

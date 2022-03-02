@@ -6,6 +6,8 @@ import { ListadoComponent } from './pages/listado/listado.component';
 import { AgregarComponent } from './pages/agregar/agregar.component';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { MaterialModule } from '../../material/material.module';
+import { FormsModule } from '@angular/forms'; 
+import { ReactiveFormsModule } from '@angular/forms';
 
 
 
@@ -14,13 +16,13 @@ import { MaterialModule } from '../../material/material.module';
     HomeComponent,
     ListadoComponent,
     AgregarComponent,
-   
   ],
   imports: [
     CommonModule,
     FlexLayoutModule,
     MaterialModule,
-    AppRoutingCoursesModule
+    AppRoutingCoursesModule,
+    ReactiveFormsModule
   ]
 })
 export class CoursesModule { }

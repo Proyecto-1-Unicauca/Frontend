@@ -1,10 +1,10 @@
-.oscuro .modal-content{
-    background-color: var(--colorPrimary);;
-    color: white;
-}
-.oscuro .close{
-    color: white;
-}
-.azul{
-    background-color: black;
-}
+
+.abs-center {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 60vh;
+  }
+  .form {
+    width: 450px;
+  }

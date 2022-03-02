@@ -12,6 +12,9 @@ import { MatNativeDateModule } from '@angular/material/core';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatSelectModule} from '@angular/material/select';
 import {MatSlideToggleModule} from '@angular/material/slide-toggle';
+import {MatChip, MatChipInput, MatChipsModule} from '@angular/material/chips';
+import {MatChipInputEvent} from '@angular/material/chips';
+import {MatBottomSheet, MatBottomSheetRef} from  '@angular/material/bottom-sheet' ;
 
 @NgModule({
   exports: [
@@ -26,7 +29,8 @@ import {MatSlideToggleModule} from '@angular/material/slide-toggle';
     MatNativeDateModule,
     MatFormFieldModule,
     MatSelectModule,
-    MatSlideToggleModule
+    MatSlideToggleModule,
+    MatChipsModule,
   ]
 })
 export class MaterialModule { }

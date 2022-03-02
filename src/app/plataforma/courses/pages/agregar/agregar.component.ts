@@ -1,7 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { MAT_DATE_LOCALE } from '@angular/material/core';
-import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { FormBuilder, FormGroup, FormControl, Validators } from '@angular/forms';
 import { PlataformaService } from '../../../services/plataforma.service';
 
 
@@ -10,19 +8,23 @@ import { PlataformaService } from '../../../services/plataforma.service';
   templateUrl: './agregar.component.html',
   styleUrls: ['./agregar.component.css'],
 })
+
 export class AgregarComponent implements OnInit {
 
-  public form!: FormGroup;
-  subjectsss: any = [];
+  form!: FormGroup;
+  subjectsss: any = {};
   valu2: any = [];
+
+  
 
   constructor(
     private labServicios: PlataformaService,
-    private formbuilder: FormBuilder) {
+    public formbuilder: FormBuilder) {
     this.buildForm();
   }
 
   ngOnInit(): void {
+<<<<<<< HEAD
 
     /* this.labServicios.getSubjects()
       .subscribe(resp => {
@@ -31,27 +33,38 @@ export class AgregarComponent implements OnInit {
 
     console.log(this.form.value + "TESTO");
     
+=======
+   this.labServicios.getSubjects()
+      .subscribe(resp => {
+        console.log(resp);
+        this.subjectsss=resp;
+      });
+>>>>>>> 9e8b1b11f69736a2e7247ecc8be6588ab77298ac
   }
 
   private buildForm() {
     this.form = this.formbuilder.group({
       name: ['', [Validators.required]],
-      start: ['', [Validators.required]],
-      end: ['', [Validators.required]],
+      start: [new FormControl(), [Validators.required]],
+      end: [new FormControl(), [Validators.required]],
       subject_id: ['', [Validators.required]],
-    });
+    }) ;
   }
 
   //Metodo para guarda la informacion del formulario
   save() {
-    console.log(this.form + "TESTO");
     const value = this.form.value;
-    this.labServicios.postcourses(value).subscribe(data => { this.valu2 = data });
-    console.log(this.form);
+    alert(this.labServicios.postcourses(this.form.value).subscribe(data => { this.valu2 = data }));
   }
 
-  MENSAJE(){
-    console.log("Josman");
+
+  onSubmit() {
+    if (this.form.valid) {
+      this.save();
+      alert("CURSO REGISTRADO");
+    } else {
+      alert("FILL ALL FIELDS");
+    }
   }
 
 }

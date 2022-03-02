@@ -1,7 +1,6 @@
 <h1>Cursos: </h1>
 <mat-divider fullscreen></mat-divider>
 <br>
-
 <div fxLayout="row wrap"
      fxLayout.xs="column"
      fxLayoutAlign="center"
@@ -17,7 +16,7 @@
                 <mat-card-title> {{curso.name}} </mat-card-title>
                 <mat-card-subtitle> Codigó de acceso: <strong> {{curso.accessKey}} </strong></mat-card-subtitle>
             </mat-card-header>
-        
+
             <!-- <img mat-card-image src="" alt=""> -->
             <mat-divider></mat-divider>
             <br>
@@ -31,7 +30,7 @@
                     Eliminar
                 </button>
                 <button mat-button color="info">
-                    <a class="abrir" routerLink="../../../workshops/listadoworkshops/{{curso.id}}">Abrir</a>
+                    <a routerLink='/workshops/listadoworkshops/{{curso.id}}'>Abrir</a>
                 </button>
             </mat-card-actions>
         </mat-card>

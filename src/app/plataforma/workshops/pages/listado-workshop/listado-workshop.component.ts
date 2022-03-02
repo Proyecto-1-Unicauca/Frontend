@@ -31,7 +31,7 @@ export class ListadoWorkshopComponent implements OnInit {
       .subscribe(courseId => this.courseId = courseId);
 
     console.log(this.courseId.courseId);
-
+    localStorage.setItem('courseId',this.courseId.courseId);
     this.labServicios.getWorkshopsById(this.courseId.courseId)
       .subscribe(resp => {
         this.respuesta = resp;

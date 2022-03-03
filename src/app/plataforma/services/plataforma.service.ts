@@ -41,11 +41,11 @@ export class PlataformaService {
     })
     return this.http.get('http://127.0.0.1:8000/workshops',{headers: httpHeader});
   }
-  postWorkshops(){
+  postWorkshops(workshops: any){
     const httpHeader = new HttpHeaders({
       'Content-Type': 'application/jason'
     })
-    return this.http.post('http://127.0.0.1:8000/workshops',{headers: httpHeader});
+    return this.http.post('http://127.0.0.1:8000/workshops',workshops,{headers: httpHeader});
   }
 
   getWorkshopsById(coursesId: any){

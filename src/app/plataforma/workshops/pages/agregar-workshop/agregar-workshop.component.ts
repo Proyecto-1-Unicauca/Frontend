@@ -40,7 +40,6 @@ export class AgregarWorkshopComponent implements OnInit {
     this.form = this.formbuilder.group({
       titulo: ['', [Validators.required]],
       descripcion: ['', [Validators.required]],
-      sensores: ['', [Validators.required]],
       dirIp: ['', [Validators.required]],
       start: ['', [Validators.required]],
       end: ['', [Validators.required]],
@@ -49,11 +48,8 @@ export class AgregarWorkshopComponent implements OnInit {
   }
 
   save() {
-    console.log(this.form.value);
-    console.log(this.ips)
     const value = this.form.value;
-    console.log(JSON.stringify(this.form))
-    this.labServicios.postcourses(this.form.value).subscribe(data => { this.valu2 = data });
+    this.labServicios.postWorkshops(JSON.stringify({topic_id:1,course_id:3, data:this.form.value, start_available:value.start,end_available:value.end })).subscribe(data => { this.valu2 = data });
   }
 
   

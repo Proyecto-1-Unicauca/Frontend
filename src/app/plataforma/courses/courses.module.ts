@@ -8,6 +8,7 @@ import { FlexLayoutModule } from '@angular/flex-layout';
 import { MaterialModule } from '../../material/material.module';
 import { FormsModule } from '@angular/forms'; 
 import { ReactiveFormsModule } from '@angular/forms';
+import { ConfirmarComponent } from './components/confirmar/confirmar.component';
 
 
 
@@ -16,6 +17,7 @@ import { ReactiveFormsModule } from '@angular/forms';
     HomeComponent,
     ListadoComponent,
     AgregarComponent,
+    ConfirmarComponent,
   ],
   imports: [
     CommonModule,

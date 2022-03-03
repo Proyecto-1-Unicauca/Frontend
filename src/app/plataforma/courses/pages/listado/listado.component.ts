@@ -3,6 +3,8 @@ import { PlataformaService } from '../../../services/plataforma.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { switchMap } from 'rxjs/operators';
 import { Location } from '@angular/common';
+import { MatDialog } from '@angular/material/dialog';
+import { ConfirmarComponent } from '../../components/confirmar/confirmar.component';
 
 @Component({
   selector: 'app-listado',
@@ -19,7 +21,8 @@ export class ListadoComponent implements OnInit {
     private labServicios: PlataformaService,
     private activatedRoute: ActivatedRoute,
     private router: Router,
-    private location: Location) { }
+    private location: Location,
+    private dialog: MatDialog) { }
 
   ngOnInit(): void {
     this.activatedRoute.params
@@ -45,16 +48,30 @@ export class ListadoComponent implements OnInit {
       }); */
   }
 
-  eliminarCurso(id: any) {
-    this.labServicios.eliminarCursoById(id)
-      .subscribe(resp => {
-        console.log(resp);
-        this.router.navigateByUrl("/refresh", {skipLocationChange: true})
-          .then(() => {
-            console.log(decodeURI(this.location.path()));
-            this.router.navigate([decodeURI(this.location.path())])    
-          });
-      })
+  eliminarCurso(id: any, name: any) {
+
+    const dialogConfirmar = this.dialog.open(ConfirmarComponent, {
+      width: '350px',
+      data: name
+    })
+
+    dialogConfirmar.afterClosed().subscribe(
+      (result) => {
+        console.log(result);
+        if(result)
+        {
+          this.labServicios.eliminarCursoById(id)
+          .subscribe(resp => {
+            console.log(resp);
+            this.router.navigateByUrl("/refresh", {skipLocationChange: true})
+              .then(() => {
+                console.log(decodeURI(this.location.path()));
+                this.router.navigate([decodeURI(this.location.path())])    
+              });
+          })
+        }
+      }
+    )
   }
 
 

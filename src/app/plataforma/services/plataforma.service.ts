@@ -15,6 +15,18 @@ export class PlataformaService {
     })
     return this.http.get(`http://127.0.0.1:8000/courses/${id_teacher}`, {headers: httpHeader});
   }
+
+  /**
+   * Método que elimina un curso segun su id
+   * @param id_curso 
+   * @returns String, mensaje de si el curso se elimino con exito
+   */
+  eliminarCursoById(id_curso: any) {
+    const httpHeader = new HttpHeaders({
+      'Content-Type': 'application/jason'
+    })
+    return this.http.delete(`http://127.0.0.1:8000/courses/${id_curso}`, {headers: httpHeader});
+  }
   
   postcourses(courses: any){
     const httpHeader = new HttpHeaders({

@@ -25,11 +25,19 @@
                 <p>Fecha de finalización: {{curso.end_date}}</p>
             </mat-card-content>
             <mat-divider></mat-divider>
-            <mat-card-actions>
-                <button mat-button color="warn">
+            <mat-card-actions fxLayout>
+
+                <button mat-raised-button
+                        color="warn"
+                        (click)="eliminarCurso(curso.id)">
+                    <mat-icon>delete</mat-icon>
                     Eliminar
                 </button>
-                <button mat-button color="info">
+
+                <span class="spacer"></span>
+
+                <button mat-raised-button color="basic">
+                    <mat-icon>open_in_new</mat-icon>
                     <a routerLink='/workshops/listadoworkshops/{{curso.id}}'>Abrir</a>
                 </button>
             </mat-card-actions>

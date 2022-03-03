@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { PlataformaService } from '../../../services/plataforma.service';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { switchMap } from 'rxjs/operators';
+import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-listado',
@@ -16,7 +17,9 @@ export class ListadoComponent implements OnInit {
 
   constructor(
     private labServicios: PlataformaService,
-    private activatedRoute: ActivatedRoute) { }
+    private activatedRoute: ActivatedRoute,
+    private router: Router,
+    private location: Location) { }
 
   ngOnInit(): void {
     this.activatedRoute.params
@@ -40,6 +43,18 @@ export class ListadoComponent implements OnInit {
         this.subjects = this.respuesta.subjects;
         console.log(this.subjects);
       }); */
+  }
+
+  eliminarCurso(id: any) {
+    this.labServicios.eliminarCursoById(id)
+      .subscribe(resp => {
+        console.log(resp);
+        this.router.navigateByUrl("/refresh", {skipLocationChange: true})
+          .then(() => {
+            console.log(decodeURI(this.location.path()));
+            this.router.navigate([decodeURI(this.location.path())])    
+          });
+      })
   }
 
 

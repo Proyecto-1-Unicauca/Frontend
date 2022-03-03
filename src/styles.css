@@ -3,6 +3,10 @@
     --colorPrimary: #1A374D;
     --dark-x: #1e2126;
 }
+
+/* angular-cli file: src/styles.css */
+@import "../node_modules/angular-calendar/css/angular-calendar.css";
+
 html, body {
     margin: 0px;
     padding: 0px;

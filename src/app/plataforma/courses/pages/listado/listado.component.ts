@@ -74,5 +74,10 @@ export class ListadoComponent implements OnInit {
     )
   }
 
+  abrirCurso(id: any)
+  {
+    this.router.navigate([`/workshops/listadoworkshops/${id}`]);
+  }
+
 
 }

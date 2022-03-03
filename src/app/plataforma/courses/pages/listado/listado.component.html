@@ -36,9 +36,11 @@
 
                 <span class="spacer"></span>
 
-                <button mat-raised-button color="basic">
+                <button mat-raised-button
+                        color="basic"
+                        (click)="abrirCurso(curso.id)">
                     <mat-icon>open_in_new</mat-icon>
-                    <a routerLink='/workshops/listadoworkshops/{{curso.id}}'>Abrir</a>
+                    Abrir
                 </button>
             </mat-card-actions>
         </mat-card>

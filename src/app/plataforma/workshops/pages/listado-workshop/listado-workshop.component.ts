@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { PlataformaService } from 'src/app/plataforma/services/plataforma.service';
 import { FormsModule } from '@angular/forms'; import { ReactiveFormsModule } from '@angular/forms';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 
 
 @Component({
@@ -22,7 +22,8 @@ export class ListadoWorkshopComponent implements OnInit {
 
   constructor(
     private labServicios: PlataformaService,
-    private activatedRoute: ActivatedRoute
+    private activatedRoute: ActivatedRoute,
+    private router: Router
   ) { }
 
   ngOnInit(): void {
@@ -56,5 +57,10 @@ export class ListadoWorkshopComponent implements OnInit {
       console.log(this.workshops)
       window.location.reload();
     });
+  }
+
+  public abrirVistaPracticas() 
+  {
+    this.router.navigate([`./workshops/practices/vistaprincipal`])
   }
 }

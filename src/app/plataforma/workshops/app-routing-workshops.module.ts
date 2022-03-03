@@ -13,6 +13,10 @@ const routes: Routes = [
     component: HomeWorkshopComponent,
     children: [
       {
+        path: 'practices',
+        loadChildren: () => import('../practices/practices.module').then(m => m.PracticesModule)
+      },
+      {
         path: 'listadoworkshops/:courseId',
         component: ListadoWorkshopComponent
       },

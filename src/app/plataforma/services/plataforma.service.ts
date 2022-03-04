@@ -69,4 +69,10 @@ export class PlataformaService {
     })
     return this.http.delete(`http://127.0.0.1:8000/workshops/${workshopId}`,{headers: httpHeader});
   }
+  getStudentsByCourseId(courseId: any){
+    const httpHeader = new HttpHeaders({
+      'Content-Type': 'application/jason'
+    })
+    return this.http.get(`http://127.0.0.1:8000/students/${courseId}`,{headers: httpHeader});
+  }
 }

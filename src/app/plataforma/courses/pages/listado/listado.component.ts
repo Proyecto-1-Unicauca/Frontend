@@ -41,6 +41,9 @@ export class ListadoComponent implements OnInit {
         console.log(this.subjects);
       }); */
   }
+  savePath(rute: any){
+    localStorage.setItem('courseId', rute);
+  }
 
 
 }

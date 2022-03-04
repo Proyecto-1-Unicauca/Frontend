@@ -25,7 +25,7 @@ const routes: Routes = [
         component: AgregarEstudianteComponent
       },
       {
-        path: 'listadoestudiante/:courseId',
+        path: 'listadoestudiantes/:courseId',
         component: ListadoEstudiantesComponent
       },{
         path: '**',

@@ -30,7 +30,7 @@
                     Eliminar
                 </button>
                 <button mat-button color="info">
-                    <a routerLink='/workshops/listadoworkshops/{{curso.id}}'>Abrir</a>
+                    <a (click)="savePath(curso.id)" routerLink='/workshops/listadoworkshops/{{curso.id}}'>Abrir</a>
                 </button>
             </mat-card-actions>
         </mat-card>

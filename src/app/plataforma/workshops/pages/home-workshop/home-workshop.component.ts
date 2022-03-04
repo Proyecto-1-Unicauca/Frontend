@@ -10,8 +10,12 @@ export class HomeWorkshopComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
-    this.dato = localStorage.getItem('courseId');
-    console.log(`este es el dato ${this.dato}`);
+    this.path();
+  }
+
+  path() {
+    this.dato= localStorage.getItem('courseId');
+    console.log(this.dato);
   }
 
 }

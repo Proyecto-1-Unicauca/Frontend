@@ -31,13 +31,13 @@ export class ListadoWorkshopComponent implements OnInit {
       .subscribe(courseId => this.courseId = courseId);
 
     console.log(this.courseId.courseId);
-    localStorage.setItem('courseId',this.courseId.courseId);
+
     this.labServicios.getWorkshopsById(this.courseId.courseId)
       .subscribe(resp => {
         this.respuesta = resp;
         this.workshops = this.respuesta.workshops;
         for (let workshop of this.workshops ){
-          this.labServicios.getTopics(workshop.topicId).subscribe(resp=>{
+          this.labServicios.getTopicsbyId(workshop.topicId).subscribe(resp=>{
             this.respuesta=resp;
             if(workshop.topicId == this.respuesta.topic.id){
               this.topic = this.respuesta.topic.name;

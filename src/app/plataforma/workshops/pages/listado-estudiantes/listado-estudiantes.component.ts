@@ -12,7 +12,8 @@ export class ListadoEstudiantesComponent implements OnInit {
   courseId: any = '';
   respuesta: any = {};
   students: any = [];
-
+  displayedColumns: any[] = ['name','surname','email','id'];
+ 
   constructor( 
     private labServicios: PlataformaService,
     private activatedRoute: ActivatedRoute) { }
@@ -27,7 +28,8 @@ export class ListadoEstudiantesComponent implements OnInit {
       this.respuesta = resp;
       this.students = this.respuesta.Students.students;
       console.log(this.students);
+      console.log(this.students[0].course_id)
     })
   }
-
 }
+

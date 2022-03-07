@@ -12,7 +12,8 @@ export class ListadoEstudiantesComponent implements OnInit {
   courseId: any = '';
   respuesta: any = {};
   students: any = [];
-  displayedColumns: any[] = ['name','surname','email','id'];
+  displayedColumns: any[] = ['name','surname','email','id','actions'];
+  flagStudents: boolean = false;
  
   constructor( 
     private labServicios: PlataformaService,
@@ -28,8 +29,23 @@ export class ListadoEstudiantesComponent implements OnInit {
       this.respuesta = resp;
       this.students = this.respuesta.Students.students;
       console.log(this.students);
-      console.log(this.students[0].course_id)
+      if(this.students.length  != 0){
+        this.flagStudents = true;
+      }else{
+        this.flagStudents = false;
+      }
     })
+  }
+  public deleteStudent(studentId:any){
+    console.log("Entró eliminar estudiante")
+    console.log(studentId);
+    this.labServicios.deleteStudent(studentId)
+    .subscribe(resp => {
+      this.respuesta = resp;
+      this.students = this.respuesta.students;
+    });
+    window.location.reload();
+
   }
 }
 

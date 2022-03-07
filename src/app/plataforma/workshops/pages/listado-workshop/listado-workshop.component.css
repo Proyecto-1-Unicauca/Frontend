@@ -15,5 +15,11 @@
   .padreAside{
     height: 100vh;
   }
+  .mat-icon {
+    font-size: 35px;
+    padding-right: 1em;
+  }
+  .mainDiv{
+    padding-left: 2em;
   
-  
+  }

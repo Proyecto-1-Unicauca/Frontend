@@ -1,0 +1,13 @@
+.mainClass{
+  padding-left: 3em;
+}
+.abs-center {
+    display: flex;
+    align-items: left;
+    justify-content: left;
+    min-height: 60vh;
+    padding-left: 5%;
+  }
+  .form {
+    width: 450px;
+  }

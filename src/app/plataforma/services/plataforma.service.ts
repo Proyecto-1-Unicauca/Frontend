@@ -35,17 +35,24 @@ export class PlataformaService {
     return this.http.post('http://127.0.0.1:8000/courses',courses,{headers: httpHeader});
   }
 
+  postStudent(student: any){
+    const httpHeader = new HttpHeaders({
+      'Content-Type': 'application/jason'
+    })
+    return this.http.post('http://127.0.0.1:8000/students',student,{headers: httpHeader});
+  }
+
   getWorkshops(){
     const httpHeader = new HttpHeaders({
       'Content-Type': 'application/jason'
     })
     return this.http.get('http://127.0.0.1:8000/workshops',{headers: httpHeader});
   }
-  postWorkshops(){
+  postWorkshops(workshops: any){
     const httpHeader = new HttpHeaders({
       'Content-Type': 'application/jason'
     })
-    return this.http.post('http://127.0.0.1:8000/workshops',{headers: httpHeader});
+    return this.http.post('http://127.0.0.1:8000/workshops',workshops,{headers: httpHeader});
   }
 
   getWorkshopsById(coursesId: any){
@@ -80,5 +87,17 @@ export class PlataformaService {
       'Content-Type': 'application/jason'
     })
     return this.http.delete(`http://127.0.0.1:8000/workshops/${workshopId}`,{headers: httpHeader});
+  }
+  getStudentsByCourseId(courseId: any){
+    const httpHeader = new HttpHeaders({
+      'Content-Type': 'application/jason'
+    })
+    return this.http.get(`http://127.0.0.1:8000/students/${courseId}`,{headers: httpHeader});
+  }
+  deleteStudent(student: any){
+    const httpHeader = new HttpHeaders({
+      'Content-Type': 'application/jason'
+    })
+    return this.http.delete(`http://127.0.0.1:8000/students/${student}`,{headers: httpHeader});
   }
 }

@@ -28,7 +28,7 @@ export class AccesoComponent implements OnInit {
         .subscribe( resp => {
           this.rta = resp;
           console.log(this.rta);
-          
+          localStorage.setItem('Id',this.rta.userId);
           if(this.rta.message === 'Email found'){
             console.log("uSER FOUN");
             

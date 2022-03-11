@@ -16,6 +16,7 @@ import {MatChip, MatChipInput, MatChipsModule} from '@angular/material/chips';
 import {MatChipInputEvent} from '@angular/material/chips';
 import {MatBottomSheet, MatBottomSheetRef} from  '@angular/material/bottom-sheet' ;
 import {MatDialogModule} from '@angular/material/dialog';
+import {MatTableModule} from '@angular/material/table';
 
 @NgModule({
   exports: [
@@ -33,6 +34,7 @@ import {MatDialogModule} from '@angular/material/dialog';
     MatSlideToggleModule,
     MatChipsModule,
     MatDialogModule,
+    MatTableModule
   ]
 })
 export class MaterialModule { }

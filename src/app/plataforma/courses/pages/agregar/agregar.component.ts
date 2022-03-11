@@ -33,6 +33,8 @@ export class AgregarComponent implements OnInit {
 
   private buildForm() {
     this.form = this.formbuilder.group({
+      documentos:['', [Validators.required]],
+      teacher_id:[localStorage.getItem('Id')],
       name: ['', [Validators.required]],
       start: [new FormControl(), [Validators.required]],
       end: [new FormControl(), [Validators.required]],
@@ -43,6 +45,7 @@ export class AgregarComponent implements OnInit {
   //Metodo para guarda la informacion del formulario
   save() {
     const value = this.form.value;
+    console.log(value);
     alert(this.labServicios.postcourses(this.form.value).subscribe(data => { this.valu2 = data }));
   }
 

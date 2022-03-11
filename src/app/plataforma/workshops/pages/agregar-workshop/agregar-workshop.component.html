@@ -1,6 +1,8 @@
 <h1>Agregar Taller</h1>
+
 <div class="abs-center">
   <form  class="example-form"  [formGroup]="form" (ngSubmit)="onSubmit()" >
+<!--
     <div class="form-group row">
       <label for="my-input" class="col-form-label col-sm-8">Titulo</label>
     </div>
@@ -26,12 +28,10 @@
       <div class="form-group row">
         <label for="my-input" class="col-form-label col-sm-8">Instruciones  de practica</label>
       </div>
-      <div class="form-group row">
-        <button  mat-raised-button > Abrir archivo </button >
-      </div>
+
   
       <div class="form-group row">
-        <label for="my-input" class="col-form-label col-sm-8">Sensores</label>
+        <label for="my-input" class="col-form-label col-sm-8">Camaras</label>
       </div>
   
       <div class="form-group row">
@@ -40,28 +40,55 @@
         <input type="text" matInput placeholder=""  formControlName="sensores"  name="sensores">
         </mat-form-field>
       </div>
+-->
+
+      
+<div class="form-group row">
+  <label for="my-input" class="col-form-label col-sm-8">Documentos</label>
+</div>
+
+<div class="form-group row">
+  <mat-form-field class="example-chip-list" appearance="fill">
+    <mat-label>Documentos</mat-label>
+    <mat-chip-list #chipList2 aria-label="documentos">
+      <mat-chip *ngFor="let documento of documentos" (removed)="removeDocumento(documento)">
+        {{documento.name}}
+        <button matChipRemove>
+          <mat-icon>cancel</mat-icon>
+        </button>
+      </mat-chip>
+      <input 
+            formControlName="documentos"
+            placeholder="Documento para la practica..."
+            [matChipInputFor]="chipList2"
+            [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+            [matChipInputAddOnBlur]="addOnBlur"
+            (matChipInputTokenEnd)="addDocumento($event)">    
+    </mat-chip-list>
+  </mat-form-field>
+</div>
 
       <div class="form-group row">
-        <label for="my-input" class="col-form-label col-sm-8">Direccion Ips</label>
+        <label for="my-input" class="col-form-label col-sm-8">Camaras</label>
       </div>
   
       <div class="form-group row">
         <mat-form-field class="example-chip-list" appearance="fill">
           <mat-label>Direcciones Ip</mat-label>
           <mat-chip-list #chipList aria-label="Ips">
-            <mat-chip *ngFor="let fruit of ips" (removed)="remove(fruit)">
-              {{fruit.name}}
+            <mat-chip *ngFor="let camara of camaras" (removed)="removeCamara(camara)">
+              {{camara.name}}
               <button matChipRemove>
                 <mat-icon>cancel</mat-icon>
               </button>
             </mat-chip>
             <input 
-                  formControlName="dirIp"
+                  formControlName="IpCamamra"
                   placeholder="New Ip..."
                   [matChipInputFor]="chipList"
                   [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
                   [matChipInputAddOnBlur]="addOnBlur"
-                  (matChipInputTokenEnd)="add($event)">    
+                  (matChipInputTokenEnd)="addCamara($event)">    
           </mat-chip-list>
         </mat-form-field>
       </div>
@@ -86,12 +113,45 @@
       <mat-form-field appearance="fill">
         <mat-label> Elije Tema </mat-label>
         <mat-select  formControlName="tema" name="tema">
-          <mat-option *ngFor="let food of topics.topics" value="  {{food.name}}">  
+          <mat-option *ngFor="let food of topics.topics" value="{{food.id}}">  
            {{food.name}}
           </mat-option>
         </mat-select>
       </mat-form-field>
     </div>
+    <div *ngIf= "form.get('tema')?.value == '0lqQTwVkz6t5i8PiCJFR'">
+      <div class="form-group row">
+        <label for="my-input" class="col-form-label col-sm-8">Variables </label>
+      </div>
+
+      <div class="form-group row">
+        <label for="my-input" class="col-form-label col-sm-8">Velocidad </label>
+      </div>
+      <div class="form group row">
+        <mat-form-field appearance="fill">
+          <mat-label>Toppings</mat-label>
+          <mat-select [formGroup]="form" multiple formControlName="variables" name="variables">
+            <mat-option *ngFor="let topping of toppingList" [value]="topping">{{topping}}</mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+
+      <div class="form-group row">
+        <label for="my-input" class="col-form-label col-sm-8">Angulo </label>
+      </div>
+  
+      <div class="form group row">
+        <mat-form-field appearance="fill">
+          <mat-label>Toppings</mat-label>
+          <mat-select [formGroup]="form" multiple  formControlName="variables2" name="variables2">
+            <mat-option *ngFor="let topping of toppingList" [value]="topping">{{topping}}</mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+    </div>
+
+
+
     <button type="submit" class="btn btn-success"> 
       <mat-icon>
         edit
@@ -99,7 +159,4 @@
       guardar
     </button>
   </form>
-
-  <p> {{form.value | json}}</p>
-  <p> {{ips | json}}</p>
 </div>

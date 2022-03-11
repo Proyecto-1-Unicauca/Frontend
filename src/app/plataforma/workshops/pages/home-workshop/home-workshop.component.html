@@ -9,13 +9,13 @@
             </button>
         </mat-toolbar>
         <mat-nav-list>
-            <a routerLink="listadoworkshops/:courseId"
+            <a (click)="path()" routerLink="./listadoworkshops/{{dato}}" 
                mat-list-item
                (click)="sidenav.toggle()">
                 <mat-icon mat-list-icon>label</mat-icon>
                 <span>Listado de workshop</span>
             </a>
-            <a routerLink="./listadoestudiante"
+            <a (click)="path()" routerLink="./listadoestudiantes/{{dato}}" 
                mat-list-item
                (click)="sidenav.toggle()">
                 <mat-icon mat-list-icon>label</mat-icon>

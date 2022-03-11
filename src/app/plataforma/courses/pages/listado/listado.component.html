@@ -1,4 +1,4 @@
-<h1>Cursos: </h1>
+<h1>  Cursos: </h1>
 <mat-divider fullscreen></mat-divider>
 <br>
 <div fxLayout="row wrap"
@@ -35,12 +35,15 @@
                 </button>
 
                 <span class="spacer"></span>
-
+<!--
                 <button mat-raised-button
                         color="basic"
                         (click)="abrirCurso(curso.id)">
                     <mat-icon>open_in_new</mat-icon>
                     Abrir
+                    -->
+                <button mat-button color="info">
+                    <a (click)="savePath(curso.id)" (click)="abrirCurso(curso.id)" routerLink='/workshops/listadoworkshops/{{curso.id}}'>Abrir</a>
                 </button>
             </mat-card-actions>
         </mat-card>

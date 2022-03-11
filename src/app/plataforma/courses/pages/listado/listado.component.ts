@@ -80,4 +80,7 @@ export class ListadoComponent implements OnInit {
   }
 
 
+  savePath(rute: any){
+    localStorage.setItem('courseId', rute);
+  }
 }

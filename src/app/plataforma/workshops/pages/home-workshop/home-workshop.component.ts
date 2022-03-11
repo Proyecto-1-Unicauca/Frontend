@@ -5,10 +5,17 @@ import { Component, OnInit } from '@angular/core';
   templateUrl: './home-workshop.component.html'
 })
 export class HomeWorkshopComponent implements OnInit {
+  dato: any = "";
 
   constructor() { }
 
   ngOnInit(): void {
+    this.path();
+  }
+
+  path() {
+    this.dato= localStorage.getItem('courseId');
+    console.log(this.dato);
   }
 
 }

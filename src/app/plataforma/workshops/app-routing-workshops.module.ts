@@ -29,7 +29,7 @@ const routes: Routes = [
         component: AgregarEstudianteComponent
       },
       {
-        path: 'listadoestudiante',
+        path: 'listadoestudiantes/:courseId',
         component: ListadoEstudiantesComponent
       },{
         path: '**',

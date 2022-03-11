@@ -15,6 +15,7 @@ export class ListadoWorkshopComponent implements OnInit {
   workshops: any = [];
   respuestaTopic: any = {};
   courseId: any = '';
+  flagWorkshop: boolean = false;
 
   isChecked = true;
   topic = "";
@@ -37,15 +38,21 @@ export class ListadoWorkshopComponent implements OnInit {
       .subscribe(resp => {
         this.respuesta = resp;
         this.workshops = this.respuesta.workshops;
-        for (let workshop of this.workshops ){
-          this.labServicios.getTopicsbyId(workshop.topicId).subscribe(resp=>{
-            this.respuesta=resp;
-            if(workshop.topicId == this.respuesta.topic.id){
-              this.topic = this.respuesta.topic.name;
-              workshop.nameTopic=this.topic;
-            }
-          }) 
-        }
+        console.log(this.workshops.length );
+        if(this.workshops.length  != 0){
+          this.flagWorkshop = true;
+          for (let workshop of this.workshops ){
+            this.labServicios.getTopicsbyId(workshop.topicId).subscribe(resp=>{
+              this.respuesta=resp;
+              if(workshop.topicId == this.respuesta.topic.id){
+                this.topic = this.respuesta.topic.name;
+                workshop.nameTopic=this.topic;
+              }
+            }) 
+          }
+        }else{
+          this.flagWorkshop = false;
+        }     
       });
   }
    public deleteWorkshop(idWorkshop:any){

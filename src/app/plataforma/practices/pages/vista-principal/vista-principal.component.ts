@@ -3,8 +3,7 @@ import { Component, OnInit } from '@angular/core';
 @Component({
   selector: 'app-vista-principal',
   templateUrl: './vista-principal.component.html',
-  styles: [
-  ]
+  styleUrls: ['./vista-principal.component.css']
 })
 export class VistaPrincipalComponent implements OnInit {
 

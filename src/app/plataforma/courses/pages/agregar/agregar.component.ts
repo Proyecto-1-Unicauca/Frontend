@@ -12,8 +12,9 @@ import { PlataformaService } from '../../../services/plataforma.service';
 export class AgregarComponent implements OnInit {
 
   form!: FormGroup;
-  subjectsss: any = {};
-  valu2: any = [];
+  subjects: any = {};
+  valu: any = [];
+  topics: any=[];
 
   
 
@@ -27,13 +28,13 @@ export class AgregarComponent implements OnInit {
    this.labServicios.getSubjects()
       .subscribe(resp => {
         console.log(resp);
-        this.subjectsss=resp;
+        this.subjects=resp;
       });
+      
   }
 
   private buildForm() {
     this.form = this.formbuilder.group({
-      documentos:['', [Validators.required]],
       teacher_id:[localStorage.getItem('Id')],
       name: ['', [Validators.required]],
       start: [new FormControl(), [Validators.required]],
@@ -45,8 +46,8 @@ export class AgregarComponent implements OnInit {
   //Metodo para guarda la informacion del formulario
   save() {
     const value = this.form.value;
-    console.log(value);
-    alert(this.labServicios.postcourses(this.form.value).subscribe(data => { this.valu2 = data }));
+
+    alert(this.labServicios.postcourses(this.form.value).subscribe(data => { this.valu = data }));
   }
 
 
@@ -54,6 +55,7 @@ export class AgregarComponent implements OnInit {
     if (this.form.valid) {
       this.save();
       alert("CURSO REGISTRADO");
+      this.buildForm();
     } else {
       alert("FILL ALL FIELDS");
     }

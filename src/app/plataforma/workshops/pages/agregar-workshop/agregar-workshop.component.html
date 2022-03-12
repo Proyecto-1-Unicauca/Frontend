@@ -113,38 +113,44 @@
       <mat-form-field appearance="fill">
         <mat-label> Elije Tema </mat-label>
         <mat-select  formControlName="tema" name="tema">
-          <mat-option *ngFor="let food of topics.topics" value="{{food.id}}">  
-           {{food.name}}
+          <mat-option *ngFor="let topic of topics.topics" value="{{topic.id}}">  
+           {{topic.name}}
           </mat-option>
         </mat-select>
       </mat-form-field>
     </div>
+
+
     <div *ngIf= "form.get('tema')?.value == '0lqQTwVkz6t5i8PiCJFR'">
       <div class="form-group row">
         <label for="my-input" class="col-form-label col-sm-8">Variables </label>
       </div>
 
       <div class="form-group row">
-        <label for="my-input" class="col-form-label col-sm-8">Velocidad </label>
+        <label for="my-input" class="col-form-label col-sm-8"> Angulo </label>
       </div>
       <div class="form group row">
         <mat-form-field appearance="fill">
           <mat-label>Toppings</mat-label>
           <mat-select [formGroup]="form" multiple formControlName="variables" name="variables">
-            <mat-option *ngFor="let topping of toppingList" [value]="topping">{{topping}}</mat-option>
+            <mat-option *ngFor="let topping of toppingListsangle " [value]="topping">
+              {{topping}}
+            </mat-option>
           </mat-select>
         </mat-form-field>
       </div>
 
       <div class="form-group row">
-        <label for="my-input" class="col-form-label col-sm-8">Angulo </label>
+        <label for="my-input" class="col-form-label col-sm-8">Velocidad </label>
       </div>
   
       <div class="form group row">
         <mat-form-field appearance="fill">
           <mat-label>Toppings</mat-label>
           <mat-select [formGroup]="form" multiple  formControlName="variables2" name="variables2">
-            <mat-option *ngFor="let topping of toppingList" [value]="topping">{{topping}}</mat-option>
+            <mat-option *ngFor="let topping of toppingListspeed" [value]="topping">
+              {{topping}}
+            </mat-option>
           </mat-select>
         </mat-form-field>
       </div>
@@ -152,6 +158,32 @@
 
 
 
+    <div *ngIf= "form.get('tema')?.value == 'w1VXVZqsimm4vogCCQVC' ">
+      <div class="form-group row">
+        <label for="my-input" class="col-form-label col-sm-8">Variables </label>
+      </div>
+
+      <div class="form-group row">
+        <label for="my-input" class="col-form-label col-sm-8"> Peso </label>
+      </div>
+      <div class="form group row">
+        <mat-form-field appearance="fill">
+          <mat-label>Toppings</mat-label>
+          <mat-select [formGroup]="form" multiple formControlName="variables" name="variables">
+            <mat-option *ngFor="let topping of toppingListsweight " [value]="topping">
+              {{topping}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+    </div>
+
+    <div *ngIf= "form.get('tema')?.value == 't8BG5qizsNXdZobuORtt' ">
+
+      <div class="form group row">
+        <input formControlName="variables" name="variables" type="hidden" value="0">
+      </div>
+    </div>
     <button type="submit" class="btn btn-success"> 
       <mat-icon>
         edit

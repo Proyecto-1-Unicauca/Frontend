@@ -12,7 +12,6 @@ export interface camara {
   name: string;
 }
 
-
 @Component({
   selector: 'app-agregar-workshop',
   templateUrl: './agregar-workshop.component.html',
@@ -23,11 +22,13 @@ export class AgregarWorkshopComponent implements OnInit {
   readonly separatorKeysCodes = [ENTER, COMMA] as const;
   camaras: camara[] = [];
   documentos: Documento[]=[];
-
+  Topics: any={};
   form!: FormGroup;
   valu2: any;
   topics: any = {};
-  toppingList: string[] = ['1', '2', '3', '4'];
+  toppingListspeed: any={};
+  toppingListsangle: any={};
+  toppingListsweight: any={};
 
   constructor(   
     private labServicios: PlataformaService,
@@ -38,8 +39,13 @@ export class AgregarWorkshopComponent implements OnInit {
   ngOnInit(): void {
     this.labServicios.getTopics()
     .subscribe(resp => {
-      console.log(resp);
       this.topics=resp;
+      this.toppingListsangle=this.topics.topics[0].constants.angle;
+      this.toppingListsangle=Object.values( this.toppingListsangle);
+      this.toppingListspeed=this.topics.topics[0].constants.speed;
+      this.toppingListspeed=Object.values( this.toppingListspeed);
+      this.toppingListsweight=this.topics.topics[2].constants.weight;
+      this.toppingListsweight=Object.values( this.toppingListsweight);
      });
   }
 
@@ -57,7 +63,7 @@ export class AgregarWorkshopComponent implements OnInit {
 
   save() {
     const value = this.form.value;
-    this.labServicios.postWorkshops(JSON.stringify({topic_id:this.form.get('tema')?.value,course_id:3, data:this.documentos,constants: JSON.stringify(this.form.get('variables')?.value+','+this.form.get('variables2')?.value) ,cameras:this.camaras , start_available:value.start,end_available:value.end })).subscribe(data => { this.valu2 = data });
+    this.labServicios.postWorkshops(JSON.stringify({topic_id:this.form.get('tema')?.value,course_id:localStorage.getItem('courseId'), data:this.documentos,constants: JSON.stringify(this.form.get('variables')?.value+','+this.form.get('variables2')?.value) ,cameras:this.camaras , start_available:value.start,end_available:value.end })).subscribe(data => { this.valu2 = data });
   }
 
   
@@ -65,6 +71,9 @@ export class AgregarWorkshopComponent implements OnInit {
     if (this.form.valid) {
       this.save();
       alert("CURSO REGISTRADO");
+      this.camaras = [];
+      this.documentos=[];
+      this.buildForm();
     } else {
       alert("Debe LLenar todos los campos");
     }

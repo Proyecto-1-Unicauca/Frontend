@@ -46,7 +46,6 @@ export class AgregarComponent implements OnInit {
   //Metodo para guarda la informacion del formulario
   save() {
     const value = this.form.value;
-
     alert(this.labServicios.postcourses(this.form.value).subscribe(data => { this.valu = data }));
   }
 

@@ -1,9 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { PlataformaService } from '../../../services/plataforma.service';
-import {COMMA, ENTER} from '@angular/cdk/keycodes';
-import {MatChipInputEvent} from '@angular/material/chips';
-import {MatBottomSheet, MatBottomSheetRef} from  '@angular/material/bottom-sheet' ;
+import { COMMA, ENTER } from '@angular/cdk/keycodes';
+import { MatChipInputEvent } from '@angular/material/chips';
+import { MatBottomSheet, MatBottomSheetRef } from '@angular/material/bottom-sheet';
+import * as moment from 'moment';
 
 export interface Documento {
   name: string;
@@ -21,32 +22,32 @@ export class AgregarWorkshopComponent implements OnInit {
   addOnBlur = true;
   readonly separatorKeysCodes = [ENTER, COMMA] as const;
   camaras: camara[] = [];
-  documentos: Documento[]=[];
-  Topics: any={};
+  documentos: Documento[] = [];
+  Topics: any = {};
   form!: FormGroup;
   valu2: any;
   topics: any = {};
-  toppingListspeed: any={};
-  toppingListsangle: any={};
-  toppingListsweight: any={};
+  toppingListspeed: any = {};
+  toppingListsangle: any = {};
+  toppingListsweight: any = {};
 
-  constructor(   
+  constructor(
     private labServicios: PlataformaService,
-    private formbuilder: FormBuilder) { 
+    private formbuilder: FormBuilder) {
     this.buildForm();
   }
 
   ngOnInit(): void {
     this.labServicios.getTopics()
-    .subscribe(resp => {
-      this.topics=resp;
-      this.toppingListsangle=this.topics.topics[0].constants.angle;
-      this.toppingListsangle=Object.values( this.toppingListsangle);
-      this.toppingListspeed=this.topics.topics[0].constants.speed;
-      this.toppingListspeed=Object.values( this.toppingListspeed);
-      this.toppingListsweight=this.topics.topics[2].constants.weight;
-      this.toppingListsweight=Object.values( this.toppingListsweight);
-     });
+      .subscribe(resp => {
+        this.topics = resp;
+        this.toppingListsangle = this.topics.topics[0].constants.angle;
+        this.toppingListsangle = Object.values(this.toppingListsangle);
+        this.toppingListspeed = this.topics.topics[0].constants.speed;
+        this.toppingListspeed = Object.values(this.toppingListspeed);
+        this.toppingListsweight = this.topics.topics[2].constants.weight;
+        this.toppingListsweight = Object.values(this.toppingListsweight);
+      });
   }
 
   private buildForm() {
@@ -55,25 +56,40 @@ export class AgregarWorkshopComponent implements OnInit {
       IpCamamra: ['', [Validators.required]],
       start: ['', [Validators.required]],
       end: ['', [Validators.required]],
-      tema:['',[Validators.required]],
-      variables:[''],
-      variables2:[''],
-    }) ;
+      tema: ['', [Validators.required]],
+      variables: [''],
+      variables2: [''],
+    });
   }
 
   save() {
     const value = this.form.value;
-    this.labServicios.postWorkshops(JSON.stringify({topic_id:this.form.get('tema')?.value,course_id:localStorage.getItem('courseId'), data:this.documentos,constants: JSON.stringify(this.form.get('variables')?.value+','+this.form.get('variables2')?.value) ,cameras:this.camaras , start_available:value.start,end_available:value.end })).subscribe(data => { this.valu2 = data });
+
+    if (this.compare(value.start, value.end) == 0) {
+      alert("Fecha inicial y fecha final debe ser diferentes");
+      return false;
+    } else {
+      this.labServicios.postWorkshops(JSON.stringify({ topic_id: this.form.get('tema')?.value, course_id: localStorage.getItem('courseId'), data: this.documentos, constants: JSON.stringify(this.form.get('variables')?.value + ',' + this.form.get('variables2')?.value), cameras: this.camaras, start_available: value.start, end_available: value.end })).subscribe(data => { this.valu2 = data });
+      return true;
+    }
   }
 
-  
+  compare(dateTimeA: any, dateTimeB: any) {
+    var momentA = moment(dateTimeA, "DD/MM/YYYY");
+    var momentB = moment(dateTimeB, "DD/MM/YYYY");
+    if (momentA > momentB) return 1;
+    else if (momentA < momentB) return -1;
+    else return 0;
+  }
+
   onSubmit() {
     if (this.form.valid) {
-      this.save();
-      alert("CURSO REGISTRADO");
-      this.camaras = [];
-      this.documentos=[];
-      this.buildForm();
+      if (this.save()) {
+        alert("CURSO REGISTRADO");
+        this.camaras = [];
+        this.documentos = [];
+        this.buildForm();
+      }
     } else {
       alert("Debe LLenar todos los campos");
     }
@@ -85,7 +101,7 @@ export class AgregarWorkshopComponent implements OnInit {
 
     // Add our fruit
     if (value) {
-      this.camaras.push({name: value});
+      this.camaras.push({ name: value });
     }
 
     // Clear the input value
@@ -99,13 +115,13 @@ export class AgregarWorkshopComponent implements OnInit {
       this.camaras.splice(index, 1);
     }
   }
-  
+
   addDocumento(event: MatChipInputEvent): void {
     const value = (event.value || '').trim();
 
     // Add our fruit
     if (value) {
-      this.documentos.push({name: value});
+      this.documentos.push({ name: value });
     }
 
     // Clear the input value

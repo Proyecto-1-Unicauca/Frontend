@@ -21,8 +21,8 @@ export interface camara {
 export class AgregarWorkshopComponent implements OnInit {
   addOnBlur = true;
   readonly separatorKeysCodes = [ENTER, COMMA] as const;
-  camaras: camara[] = [];
-  documentos: Documento[] = [];
+  camaras: any[] = [];
+  documentos: any[] = [];
   Topics: any = {};
   form!: FormGroup;
   valu2: any;
@@ -37,6 +37,16 @@ export class AgregarWorkshopComponent implements OnInit {
 
 
   objeto = {};
+
+  workshop = {
+    topic_id: "",
+    course_id: "",
+    data: {},
+    constants: [],
+    cameras: {},
+    start_available: "",
+    end_available: ""
+  }
 
   constructor(
     private labServicios: PlataformaService,
@@ -218,6 +228,7 @@ export class AgregarWorkshopComponent implements OnInit {
     // Add our fruit
     if (value) {
       this.camaras.push({ name: value });
+      this.camaras.push(value)
     }
 
     // Clear the input value
@@ -237,7 +248,8 @@ export class AgregarWorkshopComponent implements OnInit {
 
     // Add our fruit
     if (value) {
-      this.documentos.push({ name: value });
+     this.documentos.push({ name: value });
+      this.documentos.push(value);
     }
 
     // Clear the input value

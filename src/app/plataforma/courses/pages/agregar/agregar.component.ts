@@ -35,7 +35,8 @@ export class AgregarComponent implements OnInit {
 
   private buildForm() {
     this.form = this.formbuilder.group({
-      teacher_id:[localStorage.getItem('Id')],
+      //documentos:['', [Validators.required]],
+      teacher_id:[Number(localStorage.getItem('Id'))],
       name: ['', [Validators.required]],
       start: [new FormControl(), [Validators.required]],
       end: [new FormControl(), [Validators.required]],

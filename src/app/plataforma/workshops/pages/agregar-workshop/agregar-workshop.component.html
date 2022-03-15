@@ -52,7 +52,7 @@
     <mat-label>Documentos</mat-label>
     <mat-chip-list #chipList2 aria-label="documentos">
       <mat-chip *ngFor="let documento of documentos" (removed)="removeDocumento(documento)">
-        {{documento.name}}
+        {{documento}}
         <button matChipRemove>
           <mat-icon>cancel</mat-icon>
         </button>
@@ -77,7 +77,7 @@
           <mat-label>Direcciones Ip</mat-label>
           <mat-chip-list #chipList aria-label="Ips">
             <mat-chip *ngFor="let camara of camaras" (removed)="removeCamara(camara)">
-              {{camara.name}}
+              {{camara}}
               <button matChipRemove>
                 <mat-icon>cancel</mat-icon>
               </button>

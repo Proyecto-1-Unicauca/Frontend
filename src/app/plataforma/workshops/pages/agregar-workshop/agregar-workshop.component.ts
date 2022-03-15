@@ -31,21 +31,44 @@ export class AgregarWorkshopComponent implements OnInit {
   toppingListsangle: any = {};
   toppingListsweight: any = {};
 
+  listaSpeed: any = {};
+  listaAngle: any = {};
+  listaWeight: any = {};
+
+
+  objeto = {};
+
   constructor(
     private labServicios: PlataformaService,
     private formbuilder: FormBuilder) {
     this.buildForm();
   }
 
+
+
   ngOnInit(): void {
     this.labServicios.getTopics()
       .subscribe(resp => {
         this.topics = resp;
+        console.log(this.topics);
         this.toppingListsangle = this.topics.topics[0].constants.angle;
+
+        this.listaAngle = this.toppingListsangle;
+
         this.toppingListsangle = Object.values(this.toppingListsangle);
+
+
+
         this.toppingListspeed = this.topics.topics[0].constants.speed;
+
+        this.listaSpeed = this.toppingListspeed;
+
         this.toppingListspeed = Object.values(this.toppingListspeed);
+
         this.toppingListsweight = this.topics.topics[2].constants.weight;
+
+        this.listaWeight = this.toppingListsweight;
+
         this.toppingListsweight = Object.values(this.toppingListsweight);
       });
   }
@@ -69,7 +92,7 @@ export class AgregarWorkshopComponent implements OnInit {
       alert("Fecha inicial y fecha final debe ser diferentes");
       return false;
     } else {
-      this.labServicios.postWorkshops(JSON.stringify({ topic_id: this.form.get('tema')?.value, course_id: localStorage.getItem('courseId'), data: this.documentos, constants: JSON.stringify(this.form.get('variables')?.value + ',' + this.form.get('variables2')?.value), cameras: this.camaras, start_available: value.start, end_available: value.end })).subscribe(data => { this.valu2 = data });
+      this.labServicios.postWorkshops(this.buildJson(this.form.value)).subscribe(data => { this.valu2 = data });
       return true;
     }
   }
@@ -80,6 +103,99 @@ export class AgregarWorkshopComponent implements OnInit {
     if (momentA > momentB) return 1;
     else if (momentA < momentB) return -1;
     else return 0;
+    console.log(this.camaras);
+    //this.buildJson(this.form.value);
+    //this.buildJson(this.form.value)
+    //console.log(typeof this.form.get('variables')?.value);
+    //console.log(JSON.stringify({topic_id:this.form.get('tema')?.value,course_id:localStorage.getItem('courseId'), data:this.documentos,constants: JSON.stringify(this.form.get('variables')?.value+','+this.form.get('variables2')?.value) ,cameras:this.camaras , start_available:value.start,end_available:value.end}));
+    //this.labServicios.postWorkshops(JSON.stringify({topic_id:this.form.get('tema')?.value,course_id:localStorage.getItem('courseId'), data:this.documentos,constants: JSON.stringify(this.form.get('variables')?.value+','+this.form.get('variables2')?.value) ,cameras:this.camaras , start_available:value.start,end_available:value.end })).subscribe(data => { this.valu2 = data });
+  }
+
+
+  private recoveryKeyConstants(type: any, data: any) {
+
+    var objectConstantes: any = {};
+
+    if (type == "speed") {
+      for (let i in data.value) {
+        for (let j in this.listaSpeed) {
+          if (data.value[i] == this.listaSpeed[j]) {
+            objectConstantes[j] = data.value[i];
+          }
+        }
+      }
+    }
+    if (type == "angle") {
+      for (let i in data.value) {
+        for (let j in this.listaSpeed) {
+          if (data.value[i] == this.listaAngle[j]) {
+            objectConstantes[j] = data.value[i];
+          }
+        }
+      }
+    }
+    if (type == "weight") {
+      for (let i in data.value) {
+        for (let j in this.listaSpeed) {
+          if (data.value[i] == this.listaWeight[j]) {
+            objectConstantes[j] = data.value[i];
+          }
+        }
+      }
+    }
+    return objectConstantes;
+  }
+
+  private buildJson(value: any) {
+    console.log()
+    if (value) {
+      if (String(this.form.get('tema')?.value) === "0lqQTwVkz6t5i8PiCJFR") {
+        console.log(this.recoveryKeyConstants("Speed",this.form.get('variables')));
+        this.objeto = {
+          "topic_id": String(this.form.get('tema')?.value),
+          "course_id": String(localStorage.getItem('courseId')),
+          "data": this.documentos,
+          "constants": {
+            "angle": this.recoveryKeyConstants("angle",this.form.get('variables')),
+            "speed": this.recoveryKeyConstants("speed",this.form.get('variables2'))
+          },
+          "cameras": this.camaras,
+          "start_available": this.form.value.start,
+          "end_available": this.form.value.end,
+        }
+        console.log(this.objeto);
+      }
+      if (String(this.form.get('tema')?.value) === "w1VXVZqsimm4vogCCQVC") {
+        this.objeto = {
+          "topic_id": String(this.form.get('tema')?.value),
+          "course_id": String(localStorage.getItem('courseId')),
+          "data": this.documentos,
+          "constants": {
+            "weight":this.recoveryKeyConstants("weight",this.form.get('variables'))
+          },
+          "cameras": this.camaras,
+          "start_available": this.form.value.start,
+          "end_available": this.form.value.end,
+        }
+      }
+      console.log(this.objeto);
+    }
+    if (String(this.form.get('tema')?.value) === "t8BG5qizsNXdZobuORtt") {
+      this.objeto = {
+        "topic_id": String(this.form.get('tema')?.value),
+        "course_id": String(localStorage.getItem('courseId')),
+        "data": this.documentos,
+        "constants": {
+
+        },
+        "cameras": this.camaras,
+        "start_available": this.form.value.start,
+        "end_available": this.form.value.end,
+      }
+    }
+    console.log(this.objeto);
+
+    return this.objeto;
   }
 
   onSubmit() {

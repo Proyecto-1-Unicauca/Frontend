@@ -2,6 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { PlataformaService } from 'src/app/plataforma/services/plataforma.service';
 import { FormsModule } from '@angular/forms'; import { ReactiveFormsModule } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
+import { ConfirmarComponent } from '../../components/confirmar/confirmar.component';
+import { Location } from '@angular/common';
+import { MatDialog } from '@angular/material/dialog';
 
 
 @Component({
@@ -13,6 +16,7 @@ export class ListadoWorkshopComponent implements OnInit {
 
   respuesta: any = {};
   workshops: any = [];
+  workshop: any;
   respuestaTopic: any = {};
   courseId: any = '';
   flagWorkshop: boolean = false;
@@ -24,7 +28,9 @@ export class ListadoWorkshopComponent implements OnInit {
   constructor(
     private labServicios: PlataformaService,
     private activatedRoute: ActivatedRoute,
-    private router: Router
+    private router: Router,
+    private location: Location,
+    private dialog: MatDialog
   ) { }
 
   ngOnInit(): void {
@@ -34,40 +40,71 @@ export class ListadoWorkshopComponent implements OnInit {
 
     console.log(this.courseId.courseId);
 
-    this.labServicios.getWorkshopsById(this.courseId.courseId)
+    this.labServicios.getWorkshopsByIdCourse(this.courseId.courseId)
       .subscribe(resp => {
         this.respuesta = resp;
         this.workshops = this.respuesta.workshops;
-        console.log(this.workshops.length );
-        if(this.workshops.length  != 0){
+        console.log(this.workshops.length);
+        if (this.workshops.length != 0) {
           this.flagWorkshop = true;
-          for (let workshop of this.workshops ){
-            this.labServicios.getTopicsbyId(workshop.topicId).subscribe(resp=>{
-              this.respuesta=resp;
-              if(workshop.topicId == this.respuesta.topic.id){
+          for (let workshop of this.workshops) {
+            this.labServicios.getTopicsbyId(workshop.topicId).subscribe(resp => {
+              this.respuesta = resp;
+              if (workshop.topicId == this.respuesta.topic.id) {
                 this.topic = this.respuesta.topic.name;
-                workshop.nameTopic=this.topic;
+                workshop.nameTopic = this.topic;
               }
-            }) 
+            })
           }
-        }else{
+        } else {
           this.flagWorkshop = false;
-        }     
+        }
       });
   }
-   public deleteWorkshop(idWorkshop:any){
+  public deleteWorkshop(idWorkshop: any) {
     console.log("Entró eliminar")
     this.labServicios.deleteWorkShops(idWorkshop)
-    .subscribe(resp => {
-      this.respuesta = resp;
-      this.workshops = this.respuesta.workshops;
-      console.log(this.workshops)
-      window.location.reload();
-    });
+      .subscribe(resp => {
+        this.respuesta = resp;
+        this.workshops = this.respuesta.workshops;
+        console.log(this.workshops)
+        window.location.reload();
+      });
   }
 
-  public abrirVistaPracticas() 
-  {
+  infoWorkShop(id: any){
+    this.labServicios.getWorkshopsById(id)
+      .subscribe(resp => {
+        this.respuesta = resp;
+        this.workshop = this.respuesta.workshop;
+        console.log(this.workshop)
+      });
+  }
+
+  public abrirVistaPracticas() {
     this.router.navigate([`./workshops/practices/vistaprincipal`])
+  }
+  eliminarWorkshop(id: any) {
+
+    const dialogConfirmar = this.dialog.open(ConfirmarComponent, {
+      width: '350px',
+    })
+
+    dialogConfirmar.afterClosed().subscribe(
+      (result) => {
+        console.log(result);
+        if (result) {
+          this.labServicios.deleteWorkShops(id)
+            .subscribe(resp => {
+              console.log(resp);
+              this.router.navigateByUrl("/refresh", { skipLocationChange: true })
+                .then(() => {
+                  console.log(decodeURI(this.location.path()));
+                  this.router.navigate([decodeURI(this.location.path())])
+                });
+            })
+        }
+      }
+    )
   }
 }

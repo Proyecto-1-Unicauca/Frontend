@@ -1,0 +1,12 @@
+.contenido {
+    margin: 10px;
+}
+.spacer {
+    flex: 1 1 auto;
+}
+mat-toolbar {
+    background-color: var(--colorPrimary)
+}
+mat-nav-list{
+    box-sizing: border-box;
+}

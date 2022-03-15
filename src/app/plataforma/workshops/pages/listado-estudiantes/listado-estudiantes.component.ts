@@ -1,6 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router} from '@angular/router';
 import { PlataformaService } from 'src/app/plataforma/services/plataforma.service';
+import { Location } from '@angular/common';
+import { MatDialog } from '@angular/material/dialog';
+import { ConfirmarComponent } from '../../components/confirmar/confirmar.component';
+
 
 @Component({
   selector: 'app-listado-estudiantes',
@@ -17,7 +21,10 @@ export class ListadoEstudiantesComponent implements OnInit {
  
   constructor( 
     private labServicios: PlataformaService,
-    private activatedRoute: ActivatedRoute) { }
+    private activatedRoute: ActivatedRoute,
+    private router: Router,
+    private location: Location,
+    private dialog: MatDialog) { }
 
   ngOnInit(): void {
     console.log("Entre a estudiantes")
@@ -35,6 +42,33 @@ export class ListadoEstudiantesComponent implements OnInit {
         this.flagStudents = false;
       }
     })
+  }
+
+
+
+  eliminarStudent(id: any) {
+
+    const dialogConfirmar = this.dialog.open(ConfirmarComponent, {
+      width: '350px',
+      data: name
+    })
+
+    dialogConfirmar.afterClosed().subscribe(
+      (result) => {
+        console.log(result);
+        if (result) {
+          this.labServicios.deleteStudent(id)
+            .subscribe(resp => {
+              console.log(resp);
+              this.router.navigateByUrl("/refresh", { skipLocationChange: true })
+                .then(() => {
+                  console.log(decodeURI(this.location.path()));
+                  this.router.navigate([decodeURI(this.location.path())])
+                });
+            })
+        }
+      }
+    )
   }
   public deleteStudent(studentId:any){
     console.log("Entró eliminar estudiante")

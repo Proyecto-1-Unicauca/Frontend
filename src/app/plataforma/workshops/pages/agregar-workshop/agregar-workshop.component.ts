@@ -30,17 +30,12 @@ export class AgregarWorkshopComponent implements OnInit {
   toppingListsangle: any = {};
   toppingListsweight: any = {};
 
-  objeto = {};
+  listaSpeed: any = {};
+  listaAngle: any = {};
+  listaWeight: any = {};
 
-  workshop = {
-    topic_id: "",
-    course_id: "",
-    data: {},
-    constants: [],
-    cameras: {},
-    start_available: "",
-    end_available: ""
-  }
+
+  objeto = {};
 
   constructor(
     private labServicios: PlataformaService,
@@ -56,10 +51,23 @@ export class AgregarWorkshopComponent implements OnInit {
         this.topics = resp;
         console.log(this.topics);
         this.toppingListsangle = this.topics.topics[0].constants.angle;
+
+        this.listaAngle = this.toppingListsangle;
+
         this.toppingListsangle = Object.values(this.toppingListsangle);
+
+
+
         this.toppingListspeed = this.topics.topics[0].constants.speed;
+
+        this.listaSpeed = this.toppingListspeed;
+
         this.toppingListspeed = Object.values(this.toppingListspeed);
+
         this.toppingListsweight = this.topics.topics[2].constants.weight;
+
+        this.listaWeight = this.toppingListsweight;
+
         this.toppingListsweight = Object.values(this.toppingListsweight);
       });
   }
@@ -80,6 +88,7 @@ export class AgregarWorkshopComponent implements OnInit {
     const value = this.form.value;
     console.log(this.camaras);
     //this.buildJson(this.form.value);
+    //this.buildJson(this.form.value)
     this.labServicios.postWorkshops(this.buildJson(this.form.value)).subscribe(data => { this.valu2 = data });
 
     //console.log(typeof this.form.get('variables')?.value);
@@ -88,17 +97,52 @@ export class AgregarWorkshopComponent implements OnInit {
   }
 
 
+  private recoveryKeyConstants(type: any, data: any) {
+
+    var objectConstantes: any = {};
+
+    if (type == "speed") {
+      for (let i in data.value) {
+        for (let j in this.listaSpeed) {
+          if (data.value[i] == this.listaSpeed[j]) {
+            objectConstantes[j] = data.value[i];
+          }
+        }
+      }
+    }
+    if (type == "angle") {
+      for (let i in data.value) {
+        for (let j in this.listaSpeed) {
+          if (data.value[i] == this.listaAngle[j]) {
+            objectConstantes[j] = data.value[i];
+          }
+        }
+      }
+    }
+    if (type == "weight") {
+      for (let i in data.value) {
+        for (let j in this.listaSpeed) {
+          if (data.value[i] == this.listaWeight[j]) {
+            objectConstantes[j] = data.value[i];
+          }
+        }
+      }
+    }
+    return objectConstantes;
+  }
 
   private buildJson(value: any) {
+    console.log()
     if (value) {
       if (String(this.form.get('tema')?.value) === "0lqQTwVkz6t5i8PiCJFR") {
+        console.log(this.recoveryKeyConstants("Speed",this.form.get('variables')));
         this.objeto = {
           "topic_id": String(this.form.get('tema')?.value),
           "course_id": String(localStorage.getItem('courseId')),
           "data": this.documentos,
           "constants": {
-            "angle": this.form.get('variables')?.value,
-            "speed": this.form.get('variables2')?.value
+            "angle": this.recoveryKeyConstants("angle",this.form.get('variables')),
+            "speed": this.recoveryKeyConstants("speed",this.form.get('variables2'))
           },
           "cameras": this.camaras,
           "start_available": this.form.value.start,
@@ -112,7 +156,7 @@ export class AgregarWorkshopComponent implements OnInit {
           "course_id": String(localStorage.getItem('courseId')),
           "data": this.documentos,
           "constants": {
-            "weight": this.form.get('variables')?.value,
+            "weight":this.recoveryKeyConstants("weight",this.form.get('variables'))
           },
           "cameras": this.camaras,
           "start_available": this.form.value.start,
@@ -127,7 +171,7 @@ export class AgregarWorkshopComponent implements OnInit {
         "course_id": String(localStorage.getItem('courseId')),
         "data": this.documentos,
         "constants": {
-          
+
         },
         "cameras": this.camaras,
         "start_available": this.form.value.start,
@@ -135,7 +179,7 @@ export class AgregarWorkshopComponent implements OnInit {
       }
     }
     console.log(this.objeto);
-    
+
     return this.objeto;
   }
 

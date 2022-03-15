@@ -13,7 +13,6 @@
   <br>
   <div fxLayout="row wrap" fxLayout.xs="column" fxLayoutGap="50px">
     <div fxFlex="20" fxFlex.sm="45" fxFlex.md="30" *ngFor="let workshop of workshops">
-
       <mat-card class="stayleCard">
         <div> Tema: {{workshop.nameTopic}} </div>
         <hr>
@@ -25,12 +24,15 @@
           <!-- <mat-slide-toggle>Habilitar: {{isChecked}}</mat-slide-toggle>-->
 
         </mat-card-content>
-        <mat-card-actions>
-          <button (click)="deleteWorkshop(workshop.id)" mat-button color="warn">
-            Eliminar
+        <mat-card-actions >
+          <button mat-raised-button color="warn"(click)="eliminarWorkshop(workshop.id)">
+            <mat-icon>delete</mat-icon>
           </button>
-          <button mat-button color="info">
+          <button mat-raised-button color="">
             Abrir
+          </button>
+          <button mat-raised-button color="info" (click)="infoWorkShop(workshop.id)">
+            Info
           </button>
         </mat-card-actions>
       </mat-card>

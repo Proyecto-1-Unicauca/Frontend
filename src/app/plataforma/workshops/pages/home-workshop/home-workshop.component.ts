@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-home-workshop',
@@ -9,7 +10,9 @@ import { Component, OnInit } from '@angular/core';
 export class HomeWorkshopComponent implements OnInit {
   dato: any = "";
 
-  constructor() { }
+  constructor(
+    private router: Router,
+    ) { }
 
   ngOnInit(): void {
     this.path();
@@ -18,6 +21,10 @@ export class HomeWorkshopComponent implements OnInit {
   path() {
     this.dato= localStorage.getItem('courseId');
     console.log(this.dato);
+  }
+  cerrarSesion() {
+    this.router.navigate(['/auth/login']);
+    localStorage.clear();
   }
 
 }

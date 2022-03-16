@@ -19,6 +19,7 @@ export class HomeComponent implements OnInit {
   
   cerrarSesion() {
     this.router.navigate(['/auth/login']);
+    localStorage.clear();
   }
   path() {
     this.dato= localStorage.getItem('Id');

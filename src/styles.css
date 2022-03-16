@@ -1,7 +1,7 @@
 /* You can add global styles to this file, and also import other style files */
 :root {
-    --colorPrimary: #1A374D;
-    --dark-x: #1e2126;
+    --colorPrimary:rgb(20, 22, 83);
+    --dark-x: #ffffff;;
 }
 
 /* angular-cli file: src/styles.css */

@@ -16,6 +16,18 @@ export class PlataformaService {
     return this.http.get(`http://127.0.0.1:8000/courses/${id_teacher}`, {headers: httpHeader});
   }
 
+  getCurso(id_curso: any) {
+    const httpHeader = new HttpHeaders({
+      'Content-Type': 'application/jason'
+    })
+    return this.http.get(`http://127.0.0.1:8000/course/${id_curso}`, {headers: httpHeader});
+  }
+  getAllStudents() {
+    const httpHeader = new HttpHeaders({
+      'Content-Type': 'application/jason'
+    })
+    return this.http.get(`http://127.0.0.1:8000/students`, {headers: httpHeader});
+  }
   /**
    * Método que elimina un curso segun su id
    * @param id_curso 
@@ -40,6 +52,43 @@ export class PlataformaService {
       'Content-Type': 'application/jason'
     })
     return this.http.post('http://127.0.0.1:8000/students',student,{headers: httpHeader});
+  }
+
+  updateCourse(clave: any, valor:any, id_course: any){
+  
+    var myObj: any = {};
+    myObj[clave] = valor; 
+    console.log(myObj);
+    const httpHeader = new HttpHeaders({
+      'Content-Type': 'application/jason'
+    })
+    return this.http.put<any>(`http://127.0.0.1:8000/courses/${id_course}`,{
+      "students": myObj
+    },{headers: httpHeader}).subscribe(
+      data => {
+      console.log("PUT Request is successful ", data);
+      },
+      error => {
+      console.log("Rrror", error);
+      }
+      );
+  }
+
+  updateStudent(course: any, id_student: any){
+    const httpHeader = new HttpHeaders({
+      'Content-Type': 'application/jason'
+    })
+    console.log(course)
+    return this.http.put<any>(`http://127.0.0.1:8000/students/${id_student}`,{
+      "course_id": course
+    },{headers: httpHeader}).subscribe(
+      data => {
+      console.log("PUT Request is successful ", data);
+      },
+      error => {
+      console.log("Rrror", error);
+      }
+      );
   }
 
   getWorkshops(){
@@ -103,6 +152,15 @@ export class PlataformaService {
     })
     return this.http.get(`http://127.0.0.1:8000/students/${courseId}`,{headers: httpHeader});
   }
+
+  getStudentsById(id: any){
+    const httpHeader = new HttpHeaders({
+      'Content-Type': 'application/jason'
+    })
+    return this.http.get(`http://127.0.0.1:8000/studentsId/${id}`,{headers: httpHeader});
+  }
+
+
   deleteStudent(student: any){
     const httpHeader = new HttpHeaders({
       'Content-Type': 'application/jason'

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Router} from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { PlataformaService } from 'src/app/plataforma/services/plataforma.service';
 import { Location } from '@angular/common';
 import { MatDialog } from '@angular/material/dialog';
@@ -14,12 +14,12 @@ import { ConfirmarComponent } from '../../components/confirmar/confirmar.compone
 export class ListadoEstudiantesComponent implements OnInit {
 
   courseId: any = '';
-  respuesta: any = {};
-  students: any = [];
-  displayedColumns: any[] = ['name','surname','email','id','actions'];
+  respuesta: any = [];
+  students: any[] = [];
+  displayedColumns: any[] = ['name', 'surname', 'email', 'student_id', 'actions'];
   flagStudents: boolean = false;
- 
-  constructor( 
+
+  constructor(
     private labServicios: PlataformaService,
     private activatedRoute: ActivatedRoute,
     private router: Router,
@@ -27,21 +27,25 @@ export class ListadoEstudiantesComponent implements OnInit {
     private dialog: MatDialog) { }
 
   ngOnInit(): void {
+    let respuestaStudent: any = [{}];
     console.log("Entre a estudiantes")
     this.activatedRoute.params
       .subscribe(courseId => this.courseId = courseId);
-    console.log(this.courseId);
-    this.labServicios.getStudentsByCourseId(this.courseId.courseId)
-    .subscribe(resp => {
-      this.respuesta = resp;
-      this.students = this.respuesta.Students.students;
-      console.log(this.students);
-      if(this.students.length  != 0){
-        this.flagStudents = true;
-      }else{
-        this.flagStudents = false;
-      }
+    console.log(this.courseId.courseId);
+
+
+    this.labServicios.getAllStudents().subscribe(resp => {
+      console.log(resp);
+      respuestaStudent = resp;
+      this.students = respuestaStudent.Students.students;
     })
+
+    if (this.students.length == 0) {
+      this.flagStudents = true;
+    } else {
+      this.flagStudents = false;
+    }
+
   }
 
 
@@ -70,14 +74,14 @@ export class ListadoEstudiantesComponent implements OnInit {
       }
     )
   }
-  public deleteStudent(studentId:any){
+  public deleteStudent(studentId: any) {
     console.log("Entró eliminar estudiante")
     console.log(studentId);
     this.labServicios.deleteStudent(studentId)
-    .subscribe(resp => {
-      this.respuesta = resp;
-      this.students = this.respuesta.students;
-    });
+      .subscribe(resp => {
+        this.respuesta = resp;
+        this.students = this.respuesta.students;
+      });
     window.location.reload();
 
   }

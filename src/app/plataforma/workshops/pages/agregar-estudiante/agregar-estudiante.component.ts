@@ -27,7 +27,7 @@ export class AgregarEstudianteComponent implements OnInit {
   private buildForm() {
     const id_value = localStorage.getItem('courseId');
     this.form = this.formbuilder.group({
-      id: ['', [Validators.required]],
+      student_id: ['', [Validators.required]],
       course_id: [id_value],
       email: ['', [Validators.required]],
       name: ['', [Validators.required]],
@@ -36,13 +36,17 @@ export class AgregarEstudianteComponent implements OnInit {
   }
 
   save() {
-    //const id_value = localStorage.getItem('courseId');
-    //const value = this.form.value;
     const value = this.form.value;
-    console.log(value);
-    console.log(this.labServicios.postStudent(value).subscribe(data => { this.valu2 = data }));
-    this.form.reset();
-    //window.location.reload();
+    console.log(this.labServicios.getStudentsById(value.id).subscribe(data => { 
+    this.valu2 = data
+    if(this.valu2.message === "Student found"){
+      this.labServicios.updateStudent(localStorage.getItem('courseId'),value.id);
+      this.labServicios.updateCourse(this.form.value.id,this.form.value.name,"mqgyKjPauuYi4p1yOrLQ");
+    }else{
+      console.log(this.labServicios.postStudent(value).subscribe(data => { this.valu2 = data }));
+    }
+  }));
+        this.form.reset();
   }
   
   onSubmit() {

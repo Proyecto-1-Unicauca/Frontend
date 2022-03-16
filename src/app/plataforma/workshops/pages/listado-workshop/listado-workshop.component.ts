@@ -44,7 +44,7 @@ export class ListadoWorkshopComponent implements OnInit {
       .subscribe(resp => {
         this.respuesta = resp;
         this.workshops = this.respuesta.workshops;
-        console.log(this.workshops.length);
+        console.log(this.workshops);
         if (this.workshops.length != 0) {
           this.flagWorkshop = true;
           for (let workshop of this.workshops) {

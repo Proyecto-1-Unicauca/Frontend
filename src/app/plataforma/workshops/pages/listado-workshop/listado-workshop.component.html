@@ -16,12 +16,17 @@
       <mat-card class="stayleCard">
         <div> Tema: {{workshop.nameTopic}} </div>
         <hr>
-        <!-- <img mat-card-image src="" alt=""> -->
         <mat-card-content>
           <p>Fecha inicio: {{workshop.startAvailable}} </p>
           <p>Fecha final: {{workshop.endAvailable}} </p>
-
-          <!-- <mat-slide-toggle>Habilitar: {{isChecked}}</mat-slide-toggle>-->
+          
+          <div *ngIf="workshop.nameTopic == 'Movimiento Parabólico'">
+          <p>Angulos: {{listaAngle}} </p>
+          <p>Velocidades: {{listaSpeed}} </p>
+        </div>
+        <div *ngIf="workshop.nameTopic == 'Ley de Hooke'">
+          <p>Peso: {{listaWeight}} </p>
+        </div>
 
         </mat-card-content>
         <mat-card-actions >

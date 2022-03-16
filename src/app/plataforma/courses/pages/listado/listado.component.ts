@@ -83,4 +83,8 @@ export class ListadoComponent implements OnInit {
   savePath(rute: any){
     localStorage.setItem('courseId', rute);
   }
+
+  public obtenerFecha(start_date:any):any {
+    return start_date.substr(0, 10);
+  }
 }

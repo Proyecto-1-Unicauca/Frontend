@@ -41,6 +41,7 @@ export class AgregarComponent implements OnInit {
       start: [new FormControl(), [Validators.required]],
       end: [new FormControl(), [Validators.required]],
       subject_id: ['', [Validators.required]],
+      students:[{}, [Validators.required]],
     }) ;
   }
 

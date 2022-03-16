@@ -1,31 +1,38 @@
-<h1>Agregar cursos</h1>
-<div class="abs-center ">
-  <form  [formGroup]="form" (ngSubmit)="onSubmit()" >
-    <div class="form-group row">
-      <label for="my-input" class="col-form-label col-sm-8">Nombre de la Materia</label>
-    </div>
-
-    <div class="form-group row">
-      <mat-form-field appearance="fill">
-      <mat-label>Nombre de la materia</mat-label>
-      <input type="text" matInput placeholder="Mecanica" formControlName="name" name="name">
-      </mat-form-field>
-    </div>
-
-    <div   class="form-group row">
-      <label for="my-input" class="col-form-label col-sm-8">Fecha Inicio - Fecha Final </label>
-    </div> 
-
-     <mat-form-field appearance="fill">
-      <mat-label>Ingrese Fechas</mat-label>
-      <mat-date-range-input [formGroup]="form" [rangePicker]="picker">
-        <input matStartDate lass="col-form-label col-sm-8" formControlName="start" placeholder="Start date">
-        <input matEndDate formControlName="end" placeholder="End date">
-       </mat-date-range-input>
-       <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-      <mat-date-range-picker #picker></mat-date-range-picker>
-    </mat-form-field>
+<h1>Agregar cursos:</h1>
+<hr>
+<div class="abs-center container-fluid">
+  <form [formGroup]="form" (ngSubmit)="onSubmit()" class="form">
     
+    <div class="row">
+      <div class="col">
+        <div class="form-group row">
+          <label for="my-input" class="col-form-label col-sm-8">Nombre de la Materia</label>
+        </div>
+        <div class="form-group row">
+          <mat-form-field appearance="fill">
+          <mat-label>Nombre de la materia</mat-label>
+          <input type="text" matInput placeholder="Mecanica" formControlName="name" name="name">
+          </mat-form-field>
+        </div>
+      </div>
+    </div>
+
+    <div clas="row">
+      <div class="col-12">
+        <div class="form-group row">
+          <label for="my-input" class="col-form-label col-sm-8">Fecha Inicio - Fecha Final </label>
+        </div> 
+        <mat-form-field appearance="fill" class="form-fechas">
+          <mat-label>Ingrese Fechas</mat-label>
+          <mat-date-range-input [formGroup]="form" [rangePicker]="picker">
+            <input matStartDate lass="col-form-label col-sm-8" formControlName="start" placeholder="Start date">
+            <input matEndDate formControlName="end" placeholder="End date">
+           </mat-date-range-input>
+           <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+          <mat-date-range-picker #picker></mat-date-range-picker>
+        </mat-form-field>
+      </div>
+    </div>
 
     <div class="form-group row">
       <h4>TIPO DE MATERIA</h4>
@@ -38,12 +45,14 @@
         </mat-select>
       </mat-form-field>
     </div>
-    <button type="submit" class="btn btn-success"  > 
-      
-      <mat-icon>
-        edit
-      </mat-icon>
-      guardar
-    </button>
+    
+    <div class="row">
+      <div class="col-12">
+        <button type="submit" class="btn btn-success boton-guardar"> 
+          <mat-icon>edit</mat-icon>
+            guardar
+        </button>
+      </div>
+    </div>
   </form>
 </div>

@@ -1,10 +1,15 @@
 
 .abs-center {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    min-height: 60vh;
-  }
-  .form {
-    width: 450px;
-  }
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 60vh;
+}
+  
+.form {
+  width: 600px;
+}
+
+.boton-guardar, .form-fechas {
+  min-width: 100%;
+}

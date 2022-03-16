@@ -27,7 +27,7 @@ export class AgregarEstudianteComponent implements OnInit {
   private buildForm() {
     const id_value = localStorage.getItem('courseId');
     this.form = this.formbuilder.group({
-      student_id: ['', [Validators.required]],
+      id: ['', [Validators.required]],
       course_id: [id_value],
       email: ['', [Validators.required]],
       name: ['', [Validators.required]],

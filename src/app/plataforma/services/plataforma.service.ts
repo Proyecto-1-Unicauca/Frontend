@@ -167,4 +167,17 @@ export class PlataformaService {
     })
     return this.http.delete(`http://127.0.0.1:8000/students/${student}`,{headers: httpHeader});
   }
+
+  /**
+   * Método encargado de obtener la informacion de las practicas asociadas a un id
+   * de un workshop en especifico
+   * @param idWorkshop 
+   */
+  obtenerPracticasByIdWorkshops(idWorkshop: any)
+  {
+    const httpHeader = new HttpHeaders({
+      'Content-Type': 'application/jason'
+    })
+    return this.http.get(`http://127.0.0.1:8000/workshops/${idWorkshop}/practices`, {headers: httpHeader});
+  }
 }

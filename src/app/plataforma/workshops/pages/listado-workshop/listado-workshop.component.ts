@@ -23,6 +23,12 @@ export class ListadoWorkshopComponent implements OnInit {
 
   isChecked = true;
   topic = "";
+  topics: any = {};
+
+  listaSpeed: any={};
+  listaAngle: any={};
+  listaWeight: any={};
+ 
 
 
   constructor(
@@ -34,7 +40,6 @@ export class ListadoWorkshopComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    console.log("Entro");
     this.activatedRoute.params
       .subscribe(courseId => this.courseId = courseId);
 
@@ -43,8 +48,19 @@ export class ListadoWorkshopComponent implements OnInit {
     this.labServicios.getWorkshopsByIdCourse(this.courseId.courseId)
       .subscribe(resp => {
         this.respuesta = resp;
+        console.log(this.respuesta)
         this.workshops = this.respuesta.workshops;
-        console.log(this.workshops);
+        for(let i in this.workshops ){
+        if (this.respuesta.workshops[i].topicId =="0lqQTwVkz6t5i8PiCJFR") {
+          this.listaAngle = this.respuesta.workshops[i].constants.angle;
+          this.listaAngle=Object.values(this.listaAngle)
+          this.listaSpeed=this.respuesta.workshops[i].constants.speed;
+          this.listaSpeed=Object.values(this.listaSpeed)
+        }else if(this.respuesta.workshops[i].topicId=="w1VXVZqsimm4vogCCQVC"){
+          this.listaWeight = this.respuesta.workshops[i].constants.weight;
+          this.listaWeight=Object.values(this.listaWeight)
+        }
+      }
         if (this.workshops.length != 0) {
           this.flagWorkshop = true;
           for (let workshop of this.workshops) {
@@ -72,7 +88,7 @@ export class ListadoWorkshopComponent implements OnInit {
       });
   }
 
-  infoWorkShop(id: any){
+  infoWorkShop(id: any) {
     this.labServicios.getWorkshopsById(id)
       .subscribe(resp => {
         this.respuesta = resp;

@@ -31,8 +31,9 @@ export class AccesoComponent implements OnInit {
           localStorage.setItem('Id',this.rta.userId);
           if(this.rta.message === 'Email found'){
             console.log("uSER FOUN");
-            
             this.router.navigate([`/courses/listado/${this.rta.userId}`]);
+          }else{
+            alert("Usuario No registrado")
           }
         });
       }      

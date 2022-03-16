@@ -3,28 +3,28 @@
 </div>
 <div class="abs-center ">
     <form [formGroup]="form" (ngSubmit)="onSubmit()">
-
+        <mat-label>Codigo</mat-label>
         <div class="form-group row">
             <mat-form-field appearance="fill">
                 <mat-label>Código</mat-label>
                 <input type="text" matInput placeholder="123456789" formControlName="id" name="id">
             </mat-form-field>
         </div>
-
+        <mat-label>Nombre</mat-label>
         <div class="form-group row">
             <mat-form-field appearance="fill">
                 <mat-label>Nombre</mat-label>
                 <input type="text" matInput placeholder="NN" formControlName="name" name="name">
             </mat-form-field>
         </div>
-
+        <mat-label>Apellido</mat-label>
         <div class="form-group row">
             <mat-form-field appearance="fill">
                 <mat-label>Apellido</mat-label>
                 <input type="text" matInput placeholder="NN" formControlName="surname" name="surname">
             </mat-form-field>
         </div>
-
+        <mat-label>Email</mat-label>
         <div class="form-group row">
             <mat-form-field appearance="fill">
                 <mat-label>Email</mat-label>

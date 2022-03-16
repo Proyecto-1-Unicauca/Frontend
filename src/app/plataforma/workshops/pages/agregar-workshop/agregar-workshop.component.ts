@@ -67,8 +67,6 @@ export class AgregarWorkshopComponent implements OnInit {
 
         this.toppingListsangle = Object.values(this.toppingListsangle);
 
-
-
         this.toppingListspeed = this.topics.topics[0].constants.speed;
 
         this.listaSpeed = this.toppingListspeed;
@@ -227,7 +225,6 @@ export class AgregarWorkshopComponent implements OnInit {
 
     // Add our fruit
     if (value) {
-      this.camaras.push({ name: value });
       this.camaras.push(value)
     }
 
@@ -248,7 +245,6 @@ export class AgregarWorkshopComponent implements OnInit {
 
     // Add our fruit
     if (value) {
-     this.documentos.push({ name: value });
       this.documentos.push(value);
     }
 

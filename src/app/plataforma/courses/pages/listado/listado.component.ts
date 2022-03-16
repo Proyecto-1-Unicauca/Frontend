@@ -16,13 +16,20 @@ export class ListadoComponent implements OnInit {
   respuesta: any = {};
   cursos: any = [];
   userID : any = {};
+  public nameUser: any;
+  public emailUser: any;
+  public photoUser: any;
 
   constructor(
     private labServicios: PlataformaService,
     private activatedRoute: ActivatedRoute,
     private router: Router,
     private location: Location,
-    private dialog: MatDialog) { }
+    private dialog: MatDialog) {
+      this.nameUser = localStorage.getItem('name');
+      this.emailUser = localStorage.getItem('email');
+      this.photoUser = localStorage.getItem('phtoUrl');
+  }
 
   ngOnInit(): void {
     this.activatedRoute.params
@@ -30,6 +37,7 @@ export class ListadoComponent implements OnInit {
 
     console.log(this.userID.userId);
 
+   
     this.labServicios.getCursos(this.userID.userId)
       .subscribe(resp => {
         console.log(resp);

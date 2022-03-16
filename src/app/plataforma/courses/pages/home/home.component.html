@@ -9,13 +9,13 @@
             </button>
         </mat-toolbar>
         <mat-nav-list>
-            <a routerLink=" "
+            <a routerLink="./cuenta"
                mat-list-item
                (click)="sidenav.toggle()">
                 <mat-icon mat-list-icon>account_circle</mat-icon>
                 <span>Cuenta</span>
             </a>
-            <a (click)="path()"  routerLink="./listado/{{dato}}"
+            <a (click)="path()" routerLink="./listado/{{dato}}"
                mat-list-item
                (click)="sidenav.toggle()">
                 <mat-icon mat-list-icon>label</mat-icon>
@@ -36,6 +36,13 @@
             <mat-icon>menu</mat-icon>
             Menu
         </button>
+        <div class="photoUser">
+            <img class="photoUser" src="{{photoUser}}" alt="">
+        </div>
+        <div class="m-1">
+            <h6>{{nameUser}}</h6> 
+        </div>
+        
         <span class="spacer"></span>
         <button mat-button color="info" (click)="cerrarSesion()">
             <mat-icon>logout</mat-icon>

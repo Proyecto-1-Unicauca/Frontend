@@ -33,6 +33,12 @@
                 <mat-icon mat-list-icon>add</mat-icon>
                 <span>Agregar Estudiante</span>
             </a>
+            <a [routerLink]="['/courses/listado/', idProfesor]"
+               mat-list-item
+               (click)="sidenav.toggle()">
+                <mat-icon mat-list-icon>keyboard_return</mat-icon>
+                <span>Regresar</span>
+            </a>
         </mat-nav-list>   
     </mat-sidenav>
 
@@ -41,6 +47,12 @@
                 (click)="sidenav.toggle()" color="">
             <mat-icon>menu</mat-icon>
         </button>
+        <div class="photoUser">
+            <img class="photoUser" src="{{photoUser}}" alt="">
+        </div>
+        <div class="m-1">
+            <h6>{{nameUser}}</h6> 
+        </div>
         <span class="spacer"></span>
         <button mat-button color="info" (click)="cerrarSesion()">
             <mat-icon>logout</mat-icon>

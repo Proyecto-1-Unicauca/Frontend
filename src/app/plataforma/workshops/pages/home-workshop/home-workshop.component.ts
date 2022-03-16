@@ -10,9 +10,23 @@ import { Router } from '@angular/router';
 export class HomeWorkshopComponent implements OnInit {
   dato: any = "";
 
+  idProfesor: any;
+
+  public nameUser: any;
+  public emailUser: any;
+  public photoUser: any;
+
+  url: any;
+  
   constructor(
     private router: Router,
-    ) { }
+    ) { 
+      this.idProfesor = localStorage.getItem('Id');
+      this.nameUser = localStorage.getItem('name');
+      this.emailUser = localStorage.getItem('email');
+      this.photoUser = localStorage.getItem('photoUrl');
+      this.url = '/courses/listado/'+this.idProfesor;
+    }
 
   ngOnInit(): void {
     this.path();
@@ -26,5 +40,7 @@ export class HomeWorkshopComponent implements OnInit {
     this.router.navigate(['/auth/login']);
     localStorage.clear();
   }
+
+  
 
 }

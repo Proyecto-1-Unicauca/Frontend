@@ -24,14 +24,18 @@ export class AccesoComponent implements OnInit {
   signInWithGoogle(): void {
     this.authService.signIn(GoogleLoginProvider.PROVIDER_ID).then(
       data => {
+        
         this.Login.postLogin(data.email)
         .subscribe( resp => {
           this.rta = resp;
           console.log(this.rta);
           localStorage.setItem('Id',this.rta.userId);
           if(this.rta.message === 'Email found'){
-            console.log("uSER FOUN");
-            this.router.navigate([`/courses/listado/${this.rta.userId}`]);
+            console.log("USER FOUND");
+            localStorage.setItem('name', data.name);
+            localStorage.setItem('email', data.email);
+            localStorage.setItem('photoUrl', data.photoUrl);
+            this.router.navigate([`/courses/listado/`, this.rta.userId]);
           }else{
             alert("Usuario No registrado")
           }

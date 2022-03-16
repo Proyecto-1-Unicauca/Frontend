@@ -20,8 +20,17 @@ html {
     margin: 0;
     margin-bottom: 40px;
   }
+  
 footer{
     position: absolute;
     width: 100%;
     background-color: var(--colorPrimary)
+}
+
+.photoUser {
+    width: 50ppx;
+    height: 50px;
+    margin-right: 6px;
+    margin-left: 8px;
+    border-radius: 50px;
 }
